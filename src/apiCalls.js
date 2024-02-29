@@ -1,3 +1,6 @@
+import { initiateUserFunctions, initiateTripFunctions } from "./scripts"
+
+
 function getData() {
     const allTravelers = fetch('http://localhost:3001/api/v1/travelers')
         .then(resp => resp.json())
@@ -11,6 +14,8 @@ function getData() {
     Promise.all([allTravelers, allTrips, allDestinations])
     .then(data => {
         let [allTravelers, allTrips, allDestinations] = data
+        initiateUserFunctions(allTravelers.travelers)
+        initiateTripFunctions(allTrips.trips)
         console.log('allTravelers', allTravelers.travelers)
         console.log('allTrips', allTrips.trips)
         console.log('allDestinations', allDestinations.destinations)
