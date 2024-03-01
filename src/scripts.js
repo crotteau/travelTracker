@@ -1,6 +1,6 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
-import './domUpdates'
+import { displayUserName } from './domUpdates'
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
 
@@ -8,8 +8,10 @@ import './css/styles.css';
 import './images/turing-logo.png'
 
 // <<>> Find User Data
-let currentUserId = 6;
-
+let currentUserId = 3;
+let pastTrips = [];
+let upcomingTrips = [];
+let pendingTrips = [];
 // 0: id : 1
 // name : "Ham Leadbeater"
 // travelerType: "relaxer"
@@ -22,11 +24,17 @@ function initiateTripFunctions(trips) {
     findTrips(trips)
 }
 
+function initiateDestinationFunctions(destinations) {
+    findDestination(destinations, pastTrips),
+        findDestination(destinations, upcomingTrips),
+        findDestination(destinations, pendingTrips)
+}
+
 function findUser(travelers) {
     let userInfo = travelers.find(traveler => {
         return traveler.id === currentUserId
     })
-    console.log('userInfo', userInfo)
+    displayUserName(userInfo)
     return userInfo
 }
 
@@ -40,7 +48,7 @@ function findUser(travelers) {
 //     "status": "approved",
 //     "suggestedActivities": []
 // }
-function findTrips(trips) {    
+function findTrips(trips) {
     let userTrips = trips.filter(trip => {
         return trip.userID === currentUserId
     })
@@ -49,6 +57,7 @@ function findTrips(trips) {
     findPastTrips(userTrips)
     console.log('userTrips', userTrips)
 }
+
 function findTodaysDate() {
     let currentDate;
     let date = new Date()
@@ -56,7 +65,7 @@ function findTodaysDate() {
     let month = String(date.getMonth() + 1)
     let year = String(date.getFullYear())
     if (month < 10) {
-       currentDate = `${year}/0${month}/${day}`
+        currentDate = `${year}/0${month}/${day}`
     } else {
         currentDate = `${year}/${month}/${day}`
     }
@@ -76,7 +85,6 @@ function findTodaysDate() {
 
 function findUpcomingTrips(userTrips) {
     let todaysDate = findTodaysDate()
-    let upcomingTrips = []
     userTrips.forEach(trip => {
         if (trip.date > todaysDate) {
             upcomingTrips.push(trip)
@@ -86,7 +94,6 @@ function findUpcomingTrips(userTrips) {
 }
 
 function findPendingTrips(userTrips) {
-    let pendingTrips = []
     userTrips.forEach(trip => {
         if (trip.status === 'pending') {
             pendingTrips.push(trip)
@@ -98,7 +105,6 @@ function findPendingTrips(userTrips) {
 
 function findPastTrips(userTrips) {
     let todaysDate = findTodaysDate()
-    let pastTrips = []
     userTrips.forEach(trip => {
         if (trip.date < todaysDate) {
             pastTrips.push(trip)
@@ -108,8 +114,29 @@ function findPastTrips(userTrips) {
     return pastTrips
 }
 
+// destinations object {
+//     "id": 1,
+//     "destination": "Lima, Peru",
+//     "estimatedLodgingCostPerDay": 70,
+//     "estimatedFlightCostPerPerson": 400,
+//     "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
+//     "alt": "overview of city buildings with a clear sky"
+// }
+function findDestination(destinations, tripType) {
+    for (var i = 0; i < tripType.length; i++) {
+        destinations.forEach(destination => {
+            if (tripType[i].destinationID === destination.id) {
+                tripType[i].destinationID = destination.destination
+            }
+        })
+    }
+    console.log('tripType', tripType)
+    return tripType
+}
+
 export {
     initiateUserFunctions,
-    initiateTripFunctions
+    initiateTripFunctions,
+    initiateDestinationFunctions
 }
 

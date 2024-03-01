@@ -1,4 +1,4 @@
-import { initiateUserFunctions, initiateTripFunctions } from "./scripts"
+import { initiateUserFunctions, initiateTripFunctions, initiateDestinationFunctions } from "./scripts"
 
 
 function getData() {
@@ -16,6 +16,7 @@ function getData() {
         let [allTravelers, allTrips, allDestinations] = data
         initiateUserFunctions(allTravelers.travelers)
         initiateTripFunctions(allTrips.trips)
+        initiateDestinationFunctions(allDestinations.destinations)
         console.log('allTravelers', allTravelers.travelers)
         console.log('allTrips', allTrips.trips)
         console.log('allDestinations', allDestinations.destinations)
