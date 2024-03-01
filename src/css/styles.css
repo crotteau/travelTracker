@@ -1,3 +1,174 @@
-/* body {
+body {
+  /* background: linear-gradient(rgba(230, 236, 206, 1), rgba(218, 218, 217, 1)); */
+  background: rgba(207, 201, 188, 1);
+}
 
-} */
+main {
+  display: flex;
+    /* font-family: "Kosugi", sans-serif;
+    font-weight: 400;
+    font-style: normal; */
+  font-family: "Phudu", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: regular 400;
+  font-style: normal;  
+}
+
+h1 {
+  height: 10vh;
+  font-family: "Faster One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 5em;
+  margin-left: 0.5em;
+}
+
+header {
+  display: flex;
+}
+
+.leftside-trips {
+  background: whitesmoke;
+  width: 60%;
+  height: 150vh;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: rgba(107, 221, 207, 1);
+  border-width: 8px;
+  margin-left: 3em;
+}
+
+.username {
+  margin-top: 2em;
+  margin-left: 1.5em;
+  font-size: 2em;
+
+}
+
+.user-trips {
+  margin-top: 5em;
+  margin-left: 2em;
+}
+
+.past-trips-grid,
+.pending-trips-grid,
+.upcoming-trips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+  height: 22vh;
+  overflow-y: scroll;
+}
+
+.past-trips-grid {
+  height: 30vh;
+}
+
+h3 {
+  margin-left: 0.5em;
+}
+
+.trip {
+  border-radius: 20px;
+  margin: 0px;
+  height: 20vh;
+  box-shadow: 1px 1px 5px #a5a5a5;
+  &:hover {
+      border-style: solid;
+      border-color: rgba(249, 198, 66, 1); 
+      border-width: 4px;
+    }
+}
+
+.destination-name {
+  margin-left: 0px;
+  background-color: whitesmoke;
+  box-shadow: 1px 1px 5px black;
+  opacity: 0.9;
+  width: fit-content;
+  padding: 0.25em;
+  border-radius: 5px;
+}
+
+li{
+  margin: 0.5em;
+  margin-left: 1.5em;
+  width: 8em;
+  opacity: 100;
+}
+
+.trip-list{
+  background: whitesmoke;
+  box-shadow: 1px 1px 5px black;
+  width:fit-content;
+  opacity: 0.95;
+  padding: 0.3em;
+  border-radius: 15px;
+}
+
+.pending-trips{
+  background: rgba(227, 235, 176, 1);
+  height: 30vh;
+  width: 90%;
+  padding: 1em;
+  margin: 1em;
+  margin-left: 2em;
+  border-radius: 15px;
+  box-shadow: 1px 1px 12px grey;
+}
+
+.upcoming-trips {
+  background: rgba(211, 200, 147, 1);
+  height: 30vh;
+  width: 90%;
+  padding: 1em;
+  margin-top: 2em;
+  margin-left: 2em;
+  border-radius: 15px;
+  box-shadow: 1px 1px 12px grey;
+}
+
+.past-trips {
+  background: rgba(170, 207, 169, 1);
+  height: 38vh;
+  width: 90%;
+  padding: 1em;
+  margin-top: 2em;
+  margin-left: 2em;
+  border-radius: 15px;
+  box-shadow: 1px 1px 12px grey;
+}
+
+.rightside-trips {
+  width: 35%;
+  border-radius: 20px;
+  margin-left: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.request-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.trip-expenses {
+  background: whitesmoke;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 20px;
+  border-color:rgba(220, 255, 78, 1);
+  height: 40vh;
+  margin-right: 2em;
+}
+
+.request-trips {
+  background: whitesmoke;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 20px;
+  border-color:rgba(249, 198, 66, 1);
+  margin-right: 2em;
+  margin-top: 3em;
+  height: 50vh;
+}
