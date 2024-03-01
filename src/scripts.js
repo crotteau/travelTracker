@@ -1,6 +1,6 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
-import { displayUserName } from './domUpdates'
+import { displayUserName, displayTripInfo } from './domUpdates'
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
 
@@ -102,7 +102,6 @@ function findPendingTrips(userTrips) {
     console.log('pending trips', pendingTrips)
     return pendingTrips
 }
-
 function findPastTrips(userTrips) {
     let todaysDate = findTodaysDate()
     userTrips.forEach(trip => {
@@ -115,28 +114,31 @@ function findPastTrips(userTrips) {
 }
 
 // destinations object {
-//     "id": 1,
-//     "destination": "Lima, Peru",
-//     "estimatedLodgingCostPerDay": 70,
-//     "estimatedFlightCostPerPerson": 400,
-//     "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
-//     "alt": "overview of city buildings with a clear sky"
-// }
-function findDestination(destinations, tripType) {
-    for (var i = 0; i < tripType.length; i++) {
-        destinations.forEach(destination => {
-            if (tripType[i].destinationID === destination.id) {
-                tripType[i].destinationID = destination.destination
-            }
-        })
+    //     "id": 1,
+    //     "destination": "Lima, Peru",
+    //     "estimatedLodgingCostPerDay": 70,
+    //     "estimatedFlightCostPerPerson": 400,
+    //     "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
+    //     "alt": "overview of city buildings with a clear sky"
+    // }
+    function findDestination(destinations, tripType) {
+        for (var i = 0; i < tripType.length; i++) {
+            destinations.forEach(destination => {
+                if (tripType[i].destinationID === destination.id) {
+                    tripType[i].destinationID = destination.destination
+                }
+            })
+        }
+        displayTripInfo(tripType)
+        return tripType
     }
-    console.log('tripType', tripType)
-    return tripType
-}
 
 export {
     initiateUserFunctions,
     initiateTripFunctions,
-    initiateDestinationFunctions
+    initiateDestinationFunctions,
+    pastTrips,
+    upcomingTrips,
+    pendingTrips
 }
 

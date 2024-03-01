@@ -9,17 +9,23 @@
 </head>
 
 <body>
+  <header>
+    <h1>Travel Tracker</h1>
+  </header>
   <main>
-    <header>
-      <h1>Travel Tracker</h1>
-    </header>
     <section class="leftside-trips">
       <h2 class="username">Welcome, Megan!</h2>
       <h2 class="user-trips">Your Trips:</h2>
       <article class="trips-summary">
-        <div class="pending-trips">Pending</div>
-        <div class="upcoming-trips">Upcoming</div>
-        <div class="past-trips">Past</div>
+        <div class="pending-trips">Pending
+          <article class="pending-trips-grid"></article>
+        </div>
+        <div class="upcoming-trips">Upcoming
+          <article class="upcoming-trips-grid"></article>
+        </div>
+        <div class="past-trips">Past
+          <article class="past-trips-grid"></article>
+        </div>
       </article>
     </section>
     <section class="rightside-trips">
@@ -37,7 +43,7 @@
           </select>
         </form>
       </article>
-      <article class="trip-expenses"></article>
+      <article class="trip-expenses">Expenses</article>
     </section>
   </main>
 
