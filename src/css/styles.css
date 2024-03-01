@@ -60,27 +60,55 @@ header {
   overflow-y: scroll;
 }
 
+.past-trips-grid {
+  height: 30vh;
+}
+
 h3 {
   margin-left: 0.5em;
-  
 }
 
 .trip {
-  background: rgb(254, 254, 255);
   border-radius: 20px;
   margin: 0px;
-  height: 18vh;
+  height: 20vh;
   box-shadow: 1px 1px 5px #a5a5a5;
-    &:hover {
+  &:hover {
       border-style: solid;
       border-color: rgba(249, 198, 66, 1); 
       border-width: 4px;
     }
 }
 
+.destination-name {
+  margin-left: 0px;
+  background-color: whitesmoke;
+  box-shadow: 1px 1px 5px black;
+  opacity: 0.9;
+  width: fit-content;
+  padding: 0.25em;
+  border-radius: 5px;
+}
+
+li{
+  margin: 0.5em;
+  margin-left: 1.5em;
+  width: 8em;
+  opacity: 100;
+}
+
+.trip-list{
+  background: whitesmoke;
+  box-shadow: 1px 1px 5px black;
+  width:fit-content;
+  opacity: 0.95;
+  padding: 0.3em;
+  border-radius: 15px;
+}
+
 .pending-trips{
   background: rgba(227, 235, 176, 1);
-  height: 28vh;
+  height: 30vh;
   width: 90%;
   padding: 1em;
   margin: 1em;
@@ -91,7 +119,7 @@ h3 {
 
 .upcoming-trips {
   background: rgba(211, 200, 147, 1);
-  height: 28vh;
+  height: 30vh;
   width: 90%;
   padding: 1em;
   margin-top: 2em;
@@ -102,7 +130,7 @@ h3 {
 
 .past-trips {
   background: rgba(170, 207, 169, 1);
-  height: 28vh;
+  height: 38vh;
   width: 90%;
   padding: 1em;
   margin-top: 2em;

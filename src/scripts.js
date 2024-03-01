@@ -7,7 +7,7 @@ import './css/styles.css';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 
-// <<>> Find User Data
+// <<<>>> Find User Data
 let currentUserId = 7;
 let pastTrips = [];
 let upcomingTrips = [];
@@ -30,7 +30,8 @@ function initiateDestinationFunctions(destinations) {
         findDestination(destinations, pendingTrips),
         displayTripInfo(pastTrips, pastTripsGrid),
         displayTripInfo(upcomingTrips, upcomingTripsGrid),
-        displayTripInfo(pendingTrips, pendingTripsGrid)
+        displayTripInfo(pendingTrips, pendingTripsGrid),
+        calculateExpenses(destinations, pastTrips)
 }
 
 function findUser(travelers) {
@@ -101,9 +102,9 @@ function findPendingTrips(userTrips) {
             pendingTrips.push(trip)
         }
     })
-    console.log('pendingTrips', pendingTrips)
     return pendingTrips
 }
+
 function findPastTrips(userTrips) {
     let todaysDate = findTodaysDate()
     userTrips.forEach(trip => {
@@ -111,6 +112,10 @@ function findPastTrips(userTrips) {
             pastTrips.push(trip)
         }
     })
+    // pastTrips.sort((a, b) => {
+    //    return a.date - b.date
+    // })
+    console.log('pastTrips', pastTrips)
     return pastTrips
 }
 
@@ -127,11 +132,22 @@ function findDestination(destinations, tripType) {
         destinations.forEach(destination => {
             if (tripType[i].destinationID === destination.id) {
                 tripType[i].destinationID = destination.destination
+                tripType[i].image = destination.image
+                tripType[i].alt = destination.alt
             }
         })
     }
     return tripType
 }
+
+// <<<>>> User Expenses
+function calculateExpenses(destinations, pastTrips) {
+    
+
+}
+
+
+
 
 export {
     initiateUserFunctions,
