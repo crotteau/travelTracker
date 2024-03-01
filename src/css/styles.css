@@ -5,11 +5,26 @@ body {
 
 main {
   display: flex;
-
+    /* font-family: "Kosugi", sans-serif;
+    font-weight: 400;
+    font-style: normal; */
+  font-family: "Phudu", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: regular 400;
+  font-style: normal;  
 }
 
 h1 {
-  height: 5vh;
+  height: 10vh;
+  font-family: "Faster One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 5em;
+  margin-left: 0.5em;
+}
+
+header {
+  display: flex;
 }
 
 .leftside-trips {
@@ -23,6 +38,18 @@ h1 {
   margin-left: 3em;
 }
 
+.username {
+  margin-top: 2em;
+  margin-left: 1.5em;
+  font-size: 2em;
+
+}
+
+.user-trips {
+  margin-top: 5em;
+  margin-left: 2em;
+}
+
 .past-trips-grid,
 .pending-trips-grid,
 .upcoming-trips-grid {
@@ -31,6 +58,11 @@ h1 {
   grid-gap: 15px;
   height: 22vh;
   overflow-y: scroll;
+}
+
+h3 {
+  margin-left: 0.5em;
+  
 }
 
 .trip {
@@ -52,7 +84,6 @@ h1 {
   width: 90%;
   padding: 1em;
   margin: 1em;
-  margin-top: 15vh;
   margin-left: 2em;
   border-radius: 15px;
   box-shadow: 1px 1px 12px grey;
