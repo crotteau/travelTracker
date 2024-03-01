@@ -1,6 +1,6 @@
 body {
-  background: rgba(230, 236, 206, 1);
-
+  /* background: linear-gradient(rgba(230, 236, 206, 1), rgba(218, 218, 217, 1)); */
+  background: rgba(207, 201, 188, 1);
 }
 
 main {
@@ -8,15 +8,19 @@ main {
 
 }
 
+h1 {
+  height: 5vh;
+}
+
 .leftside-trips {
   background: whitesmoke;
   width: 60%;
-  height: 110vh;
+  height: 150vh;
   border-radius: 20px;
   border-style: solid;
   border-color: rgba(107, 221, 207, 1);
-  border-width: 5px;
-  margin-left: 20px;
+  border-width: 8px;
+  margin-left: 3em;
 }
 
 .past-trips-grid,
@@ -24,48 +28,88 @@ main {
 .upcoming-trips-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  height: 20vh;
+  grid-gap: 15px;
+  height: 22vh;
   overflow-y: scroll;
 }
+
+.trip {
+  background: rgb(254, 254, 255);
+  border-radius: 20px;
+  margin: 0px;
+  height: 18vh;
+  box-shadow: 1px 1px 5px #a5a5a5;
+    &:hover {
+      border-style: solid;
+      border-color: rgba(249, 198, 66, 1); 
+      border-width: 4px;
+    }
+}
+
 .pending-trips{
   background: rgba(227, 235, 176, 1);
-  height: 22vh;
+  height: 28vh;
   width: 90%;
   padding: 1em;
   margin: 1em;
   margin-top: 15vh;
+  margin-left: 2em;
   border-radius: 15px;
+  box-shadow: 1px 1px 12px grey;
 }
 
 .upcoming-trips {
   background: rgba(211, 200, 147, 1);
-  height: 22vh;
+  height: 28vh;
   width: 90%;
   padding: 1em;
-  margin: 1em;
+  margin-top: 2em;
+  margin-left: 2em;
   border-radius: 15px;
+  box-shadow: 1px 1px 12px grey;
 }
 
 .past-trips {
   background: rgba(170, 207, 169, 1);
-  height: 22vh;
+  height: 28vh;
   width: 90%;
   padding: 1em;
-  margin: 1em;
+  margin-top: 2em;
+  margin-left: 2em;
   border-radius: 15px;
+  box-shadow: 1px 1px 12px grey;
 }
 
 .rightside-trips {
-  background: whitesmoke;
   width: 35%;
   border-radius: 20px;
   margin-left: 2em;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
 }
 
 .request-input {
   display: flex;
   flex-direction: column;
+}
+
+.trip-expenses {
+  background: whitesmoke;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 20px;
+  border-color:rgba(220, 255, 78, 1);
+  height: 40vh;
+  margin-right: 2em;
+}
+
+.request-trips {
+  background: whitesmoke;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 20px;
+  border-color:rgba(249, 198, 66, 1);
+  margin-right: 2em;
+  margin-top: 3em;
+  height: 50vh;
 }

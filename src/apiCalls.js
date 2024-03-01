@@ -18,7 +18,7 @@ function getData() {
         initiateTripFunctions(allTrips.trips)
         initiateDestinationFunctions(allDestinations.destinations)
         // console.log('allTravelers', allTravelers.travelers)
-        // console.log('allTrips', allTrips.trips)
+        console.log('allTrips', allTrips.trips)
         // console.log('allDestinations', allDestinations.destinations)
     })
     .catch(error => console.log(error))

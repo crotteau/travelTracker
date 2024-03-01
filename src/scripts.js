@@ -1,6 +1,6 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
-import { displayUserName, displayTripInfo } from './domUpdates'
+import { displayUserName, displayTripInfo, pastTripsGrid, upcomingTripsGrid, pendingTripsGrid } from './domUpdates'
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
 
@@ -8,7 +8,7 @@ import './css/styles.css';
 import './images/turing-logo.png'
 
 // <<>> Find User Data
-let currentUserId = 3;
+let currentUserId = 7;
 let pastTrips = [];
 let upcomingTrips = [];
 let pendingTrips = [];
@@ -25,9 +25,12 @@ function initiateTripFunctions(trips) {
 }
 
 function initiateDestinationFunctions(destinations) {
-    findDestination(destinations, pastTrips),
+        findDestination(destinations, pastTrips),
         findDestination(destinations, upcomingTrips),
-        findDestination(destinations, pendingTrips)
+        findDestination(destinations, pendingTrips),
+        displayTripInfo(pastTrips, pastTripsGrid),
+        displayTripInfo(upcomingTrips, upcomingTripsGrid),
+        displayTripInfo(pendingTrips, pendingTripsGrid)
 }
 
 function findUser(travelers) {
@@ -55,7 +58,6 @@ function findTrips(trips) {
     findUpcomingTrips(userTrips)
     findPendingTrips(userTrips)
     findPastTrips(userTrips)
-    console.log('userTrips', userTrips)
 }
 
 function findTodaysDate() {
@@ -99,7 +101,7 @@ function findPendingTrips(userTrips) {
             pendingTrips.push(trip)
         }
     })
-    console.log('pending trips', pendingTrips)
+    console.log('pendingTrips', pendingTrips)
     return pendingTrips
 }
 function findPastTrips(userTrips) {
@@ -109,36 +111,31 @@ function findPastTrips(userTrips) {
             pastTrips.push(trip)
         }
     })
-    console.log('pastTrips', pastTrips)
     return pastTrips
 }
 
 // destinations object {
-    //     "id": 1,
-    //     "destination": "Lima, Peru",
-    //     "estimatedLodgingCostPerDay": 70,
-    //     "estimatedFlightCostPerPerson": 400,
-    //     "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
-    //     "alt": "overview of city buildings with a clear sky"
-    // }
-    function findDestination(destinations, tripType) {
-        for (var i = 0; i < tripType.length; i++) {
-            destinations.forEach(destination => {
-                if (tripType[i].destinationID === destination.id) {
-                    tripType[i].destinationID = destination.destination
-                }
-            })
-        }
-        displayTripInfo(tripType)
-        return tripType
+//     "id": 1,
+//     "destination": "Lima, Peru",
+//     "estimatedLodgingCostPerDay": 70,
+//     "estimatedFlightCostPerPerson": 400,
+//     "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
+//     "alt": "overview of city buildings with a clear sky"
+// }
+function findDestination(destinations, tripType) {
+    for (var i = 0; i < tripType.length; i++) {
+        destinations.forEach(destination => {
+            if (tripType[i].destinationID === destination.id) {
+                tripType[i].destinationID = destination.destination
+            }
+        })
     }
+    return tripType
+}
 
 export {
     initiateUserFunctions,
     initiateTripFunctions,
     initiateDestinationFunctions,
-    pastTrips,
-    upcomingTrips,
-    pendingTrips
 }
 

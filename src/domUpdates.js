@@ -5,23 +5,23 @@ window.addEventListener('load', getData)
 
 const greeting = document.querySelector('.username')
 const pastTripsGrid = document.querySelector('.past-trips-grid')
+const pendingTripsGrid = document.querySelector('.pending-trips-grid')
+const upcomingTripsGrid = document.querySelector('.upcoming-trips-grid')
 
 function displayUserName(userInfo) {
     greeting.innerText = `Welcome, ${userInfo.name}!`
 }
 
-function displayTripInfo(trips) {
-    for (var i = 0; i <trips.length; i++) {
-        pastTripsGrid.insertAdjacentHTML('afterbegin',
-        `<ul class="past-trip">
+function displayTripInfo(trips, grid) {
+    for (var i = 0; i < trips.length; i++) {
+        grid.insertAdjacentHTML('afterbegin',
+            `<ul class="trip">
         <h3>${trips[i].destinationID}</h3>
         <li>Date: ${trips[i].date}</li>
         <li>Duration: ${trips[i].duration}</li>
         <li>Travelers: ${trips[i].travelers}</li>
        </ul>`)
-       console.log('!!!!',trips[i].destinationID)
     }
-    
 }
 //     "destinationID": 22,
 //     "travelers": 4,
@@ -30,5 +30,8 @@ function displayTripInfo(trips) {
 
 export {
     displayUserName,
-    displayTripInfo
+    displayTripInfo,
+    pastTripsGrid,
+    upcomingTripsGrid,
+    pendingTripsGrid
 }
