@@ -1,6 +1,6 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
-import { displayUserName, displayTripInfo, pastTripsGrid, upcomingTripsGrid, pendingTripsGrid } from './domUpdates'
+import { displayUserName, displayTripInfo, pastTripsGrid, upcomingTripsGrid, pendingTripsGrid, displayExpenses } from './domUpdates'
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
 
@@ -25,13 +25,13 @@ function initiateTripFunctions(trips) {
 }
 
 function initiateDestinationFunctions(destinations) {
+    calculateExpenses(destinations, pastTrips),
         findDestination(destinations, pastTrips),
         findDestination(destinations, upcomingTrips),
         findDestination(destinations, pendingTrips),
         displayTripInfo(pastTrips, pastTripsGrid),
         displayTripInfo(upcomingTrips, upcomingTripsGrid),
-        displayTripInfo(pendingTrips, pendingTripsGrid),
-        calculateExpenses(destinations, pastTrips)
+        displayTripInfo(pendingTrips, pendingTripsGrid)
 }
 
 function findUser(travelers) {
@@ -112,10 +112,6 @@ function findPastTrips(userTrips) {
             pastTrips.push(trip)
         }
     })
-    // pastTrips.sort((a, b) => {
-    //    return a.date - b.date
-    // })
-    console.log('pastTrips', pastTrips)
     return pastTrips
 }
 
@@ -142,8 +138,23 @@ function findDestination(destinations, tripType) {
 
 // <<<>>> User Expenses
 function calculateExpenses(destinations, pastTrips) {
-    
-
+    let totalExpenses = 0;
+    let totalLodgingCost = 0;
+    let totalFlightCost = 0;
+    for (var i = 0; i < pastTrips.length; i++) {
+        destinations.forEach(destination => {
+            if (pastTrips[i].destinationID === destination.id) {
+                let lodgingCost = destination.estimatedLodgingCostPerDay
+                let flightCost = destination.estimatedFlightCostPerPerson
+                totalLodgingCost += (lodgingCost * pastTrips[i].duration)
+                totalFlightCost += (flightCost * pastTrips[i].travelers)
+                totalExpenses += (lodgingCost * pastTrips[i].duration)
+                totalExpenses += (flightCost * pastTrips[i].travelers)
+            }
+        })
+    }
+   let plusAgentsFee = Math.round(totalExpenses * 1.1)
+   displayExpenses(totalLodgingCost, totalFlightCost, totalExpenses, plusAgentsFee)
 }
 
 

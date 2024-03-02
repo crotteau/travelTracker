@@ -147,10 +147,6 @@ li{
   flex-direction: column;
 }
 
-.request-input {
-  display: flex;
-  flex-direction: column;
-}
 
 .trip-expenses {
   background: whitesmoke;
@@ -160,6 +156,42 @@ li{
   border-color:rgba(220, 255, 78, 1);
   height: 40vh;
   margin-right: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.expenses-header {
+  background-color: rgba(212, 189, 129, 1);
+  border-radius: 10px;
+  font-size: 2em;
+  width: fit-content;
+  margin: 1em 0.5em;
+  padding: 0.5em;
+  box-shadow: 1px 1px 10px purple;
+}
+
+.expenses-table {
+  margin-left: 2em;
+  text-align: left;
+  background-color: (220, 255, 78, 1);
+}
+
+.column-header{
+  font-size: 1.5em;
+  width: 5em;
+}
+
+th {
+  font-size: 1.3em;
+}
+
+tr:hover {
+  background-color: rgb(237, 225, 192);
+}
+
+caption {
+  caption-side: bottom;
+  text-align: left;
 }
 
 .request-trips {
@@ -171,4 +203,9 @@ li{
   margin-right: 2em;
   margin-top: 3em;
   height: 50vh;
+}
+
+.request-input {
+  display: flex;
+  flex-direction: column;
 }
