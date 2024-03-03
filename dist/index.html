@@ -39,19 +39,48 @@
     </section>
     <section class="rightside-trips">
       <article class="trip-expenses">
-        <h2>Annual Trip Expenses</h2>
+        <h2 class="expenses-header">Annual Trip Expenses</h2>
+        <table class="expenses-table">
+          <caption>*includes 10% agent's fee</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="column-header">Expense</th>
+              <th scope="col" class="column-header">Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Lodging</th>
+              <td class="lodging-cost"></td>
+            </tr>
+            <tr>
+              <th scope="row">Flights</th>
+              <td class="flight-cost"></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th scope="row">Total Expenses</th>
+              <td colspan="2" class="total-expenses"></td>
+            </tr>
+              <tr>
+                <th scope="row">Grand Total*</th>
+                <td colspan="2" class="agents-fee"></td>
+              </tr>
+          </tfoot>
+        </table>
       </article>
       <article class="request-trips">
         <h2 class="request">Request a Trip</h2>
         <form class="request-input">
           <label for="tripDate">Date:</label>
           <input type="date" name="trip-date" id="tripDate">
-          <label for="tripDuration">Duration:</label>
+          <label for="tripDuration">Duration (days):</label>
           <input type="number" name="trip-duration" id="tripDuration">
           <label for="travelerNum">Number of Travelers:</label>
           <input type="number" name="traveler-number" id="travelerNum">
           <select name="destinations" id="destinations">
-            <option class="select-destination">Click to Select a Destination</option>
+            <option class="select-destination">Click to Select Destination</option>
           </select>
         </form>
       </article>

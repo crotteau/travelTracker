@@ -1,12 +1,16 @@
 import { getData } from './apiCalls'
 
-
-window.addEventListener('load', getData)
-
 const greeting = document.querySelector('.username')
 const pastTripsGrid = document.querySelector('.past-trips-grid')
 const pendingTripsGrid = document.querySelector('.pending-trips-grid')
 const upcomingTripsGrid = document.querySelector('.upcoming-trips-grid')
+const lodgingCostTable = document.querySelector('.lodging-cost')
+const flightCostTable = document.querySelector('.flight-cost')
+const totalExpensesTable = document.querySelector('.total-expenses')
+const agentsFeeTable = document.querySelector('.agents-fee')
+
+window.addEventListener('load', getData)
+
 
 function displayUserName(userInfo) {
     greeting.innerText = `Welcome, ${userInfo.name}!`
@@ -25,15 +29,18 @@ function displayTripInfo(trips, grid) {
             </ul>`)
     }
 }
-// <img class="destination-image" src="${trips[i].image}" alt="${trips[i].alt}">
-//     "destinationID": 22,
-//     "travelers": 4,
-//     "date": "2022/05/22",
-//     "duration": 17,
+
+function displayExpenses(totalLodgingCost, totalFlightCost, totalExpenses, plusAgentsFee) {
+    lodgingCostTable.innerText = `$${totalLodgingCost.toLocaleString()}`
+    flightCostTable.innerText = `$${totalFlightCost.toLocaleString()}`
+    totalExpensesTable.innerText = `$${totalExpenses.toLocaleString()}`
+    agentsFeeTable.innerText = `$${plusAgentsFee.toLocaleString()}`
+}
 
 export {
     displayUserName,
     displayTripInfo,
+    displayExpenses,
     pastTripsGrid,
     upcomingTripsGrid,
     pendingTripsGrid
