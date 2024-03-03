@@ -12,9 +12,6 @@ let currentUserId = 7;
 let pastTrips = [];
 let upcomingTrips = [];
 let pendingTrips = [];
-// 0: id : 1
-// name : "Ham Leadbeater"
-// travelerType: "relaxer"
 
 function initiateUserFunctions(travelers) {
     findUser(travelers)
@@ -41,6 +38,9 @@ function findUser(travelers) {
     displayUserName(userInfo)
     return userInfo
 }
+// 0: id : 1
+// name : "Ham Leadbeater"
+// travelerType: "relaxer"
 
 // trip object{
 //     "id": 1,
@@ -52,6 +52,26 @@ function findUser(travelers) {
 //     "status": "approved",
 //     "suggestedActivities": []
 // }
+
+// upcoming trips{
+//     "id": 3,
+//     "userID": 3,
+//     "destinationID": 22,
+//     "travelers": 4,
+//     "date": "2022/05/22",
+//     "duration": 17,
+//     "status": "approved",
+//     "suggestedActivities": []
+// }
+// destinations object {
+//     "id": 1,
+//     "destination": "Lima, Peru",
+//     "estimatedLodgingCostPerDay": 70,
+//     "estimatedFlightCostPerPerson": 400,
+//     "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
+//     "alt": "overview of city buildings with a clear sky"
+// }
+
 function findTrips(trips) {
     let userTrips = trips.filter(trip => {
         return trip.userID === currentUserId
@@ -74,16 +94,6 @@ function findTodaysDate() {
     }
     return currentDate
 }
-// upcoming trips{
-//     "id": 3,
-//     "userID": 3,
-//     "destinationID": 22,
-//     "travelers": 4,
-//     "date": "2022/05/22",
-//     "duration": 17,
-//     "status": "approved",
-//     "suggestedActivities": []
-// }
 
 
 function findUpcomingTrips(userTrips) {
@@ -115,14 +125,6 @@ function findPastTrips(userTrips) {
     return pastTrips
 }
 
-// destinations object {
-//     "id": 1,
-//     "destination": "Lima, Peru",
-//     "estimatedLodgingCostPerDay": 70,
-//     "estimatedFlightCostPerPerson": 400,
-//     "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
-//     "alt": "overview of city buildings with a clear sky"
-// }
 function findDestination(destinations, tripType) {
     for (var i = 0; i < tripType.length; i++) {
         destinations.forEach(destination => {
@@ -153,10 +155,9 @@ function calculateExpenses(destinations, pastTrips) {
             }
         })
     }
-   let plusAgentsFee = Math.round(totalExpenses * 1.1)
-   displayExpenses(totalLodgingCost, totalFlightCost, totalExpenses, plusAgentsFee)
+    let plusAgentsFee = Math.round(totalExpenses * 1.1)
+    displayExpenses(totalLodgingCost, totalFlightCost, totalExpenses, plusAgentsFee)
 }
-
 
 
 
