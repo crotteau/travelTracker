@@ -1,4 +1,5 @@
 import { getData } from './apiCalls'
+import { submitTripRequest } from './scripts'
 
 const greeting = document.querySelector('.username')
 const pastTripsGrid = document.querySelector('.past-trips-grid')
@@ -8,8 +9,17 @@ const lodgingCostTable = document.querySelector('.lodging-cost')
 const flightCostTable = document.querySelector('.flight-cost')
 const totalExpensesTable = document.querySelector('.total-expenses')
 const agentsFeeTable = document.querySelector('.agents-fee')
+const destinationContainer = document.querySelector('select')
+const tripDate = document.querySelector('#tripDate')
+const tripDuration = document.querySelector('#tripDuration')
+const travelerNum = document.querySelector('#travelerNum')
+const requestTripButton = document.querySelector('.request-trip-button')
+const requestError = document.querySelector('.request-error')
 
 window.addEventListener('load', getData)
+requestTripButton.addEventListener('click', () => {
+    checkForCompletion(tripDate.value, tripDuration.value, travelerNum.value, destinationContainer.value)
+})
 
 
 function displayUserName(userInfo) {
@@ -37,10 +47,46 @@ function displayExpenses(totalLodgingCost, totalFlightCost, totalExpenses, plusA
     agentsFeeTable.innerText = `$${plusAgentsFee.toLocaleString()}`
 }
 
+function displayDestinationOptions(destinations) {
+    let travelOptions = destinations.sort((a, b) => {
+        return b.destination.localeCompare(a.destination)
+    })
+    for (var i = 0; i < travelOptions.length; i++) {
+        destinationContainer.insertAdjacentHTML('afterbegin', 
+        `<option value="${travelOptions[i].id}">${travelOptions[i].destination}</option>`)
+    }
+}
+
+function checkForCompletion(tripDate, tripDuration, travelerNum, destination) {
+    if (!tripDate) {
+        console.log('hiiiiii')
+        requestError.innerText = 'Please choose a trip date'
+    } else if (!tripDuration) {
+        requestError.innerText = 'Please choose trip duration'
+    } else if (!travelerNum) {
+        requestError.innerText = 'Please indicate traveler number'
+    } else if (destination === 'Click to Select Destination') {
+        requestError.innerText = 'Please choose a destination'
+    } else {
+        submitTripRequest(tripDate, tripDuration, travelerNum, destination)
+        resetError()
+    }
+}
+
+function displayPostError() {
+    requestError.innerText = 'We\'re sorry! An unexpected error occurred. Please try again later.'
+}
+
+function resetError() {
+    requestError.innerText = ''
+}
+
 export {
     displayUserName,
     displayTripInfo,
     displayExpenses,
+    displayDestinationOptions,
+    displayPostError,
     pastTripsGrid,
     upcomingTripsGrid,
     pendingTripsGrid

@@ -1,6 +1,7 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
-import { displayUserName, displayTripInfo, pastTripsGrid, upcomingTripsGrid, pendingTripsGrid, displayExpenses } from './domUpdates'
+import { displayUserName, displayTripInfo, pastTripsGrid, upcomingTripsGrid, pendingTripsGrid, displayExpenses, displayDestinationOptions } from './domUpdates'
+import { postData } from './apiCalls'
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
 
@@ -28,7 +29,8 @@ function initiateDestinationFunctions(destinations) {
         findDestination(destinations, pendingTrips),
         displayTripInfo(pastTrips, pastTripsGrid),
         displayTripInfo(upcomingTrips, upcomingTripsGrid),
-        displayTripInfo(pendingTrips, pendingTripsGrid)
+        displayTripInfo(pendingTrips, pendingTripsGrid),
+        displayDestinationOptions(destinations)
 }
 
 function findUser(travelers) {
@@ -159,11 +161,25 @@ function calculateExpenses(destinations, pastTrips) {
     displayExpenses(totalLodgingCost, totalFlightCost, totalExpenses, plusAgentsFee)
 }
 
-
+// <<>> Trip Request
+function submitTripRequest(tripDate, tripDuration, travelerNum, destination) {
+    let dateParsed = tripDate.replace('-', '/').replace('-', '/')
+    let tripRequest = {
+        id: 4,
+        userId: currentUserId,
+        destinationID: destination,
+        travelers: travelerNum,
+        date: dateParsed,
+        duration: tripDuration,
+        status: 'pending',
+        suggestedActivities: []
+    }
+    postData(tripRequest)
+}
 
 export {
     initiateUserFunctions,
     initiateTripFunctions,
     initiateDestinationFunctions,
+    submitTripRequest
 }
-

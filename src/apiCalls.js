@@ -1,5 +1,5 @@
 import { initiateUserFunctions, initiateTripFunctions, initiateDestinationFunctions } from "./scripts"
-
+import { displayPostError } from "./domUpdates"
 
 function getData() {
     const allTravelers = fetch('http://localhost:3001/api/v1/travelers')
@@ -17,14 +17,31 @@ function getData() {
         initiateUserFunctions(allTravelers.travelers)
         initiateTripFunctions(allTrips.trips)
         initiateDestinationFunctions(allDestinations.destinations)
-        console.log('allTravelers', allTravelers.travelers)
-        console.log('allTrips', allTrips.trips)
-        console.log('allDestinations', allDestinations.destinations)
+        // console.log('allTravelers', allTravelers.travelers)
+        // console.log('allTrips', allTrips.trips)
+        // console.log('allDestinations', allDestinations.destinations)
     })
     .catch(error => console.log(error))
 }
 
+function postData(newTrip) {
+    fetch('http://localhost:3001/api/v1/trips', {
+        method: 'POST',
+        body: JSON.stringify(newTrip),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(resp => resp.json(),
+        console.log(resp))
+    .catch(error => {
+        console.log(error)
+        displayPostError()
+    })
+}
+
 
 export {
-    getData
+    getData,
+    postData
 }

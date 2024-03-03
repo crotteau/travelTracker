@@ -215,3 +215,8 @@ caption {
   display: flex;
   flex-direction: column;
 }
+
+.request-error {
+  font-size: 1em;
+  color: red;
+}

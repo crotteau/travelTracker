@@ -79,10 +79,13 @@
           <input type="number" name="trip-duration" id="tripDuration">
           <label for="travelerNum">Number of Travelers:</label>
           <input type="number" name="traveler-number" id="travelerNum">
+          <label for="destinations">Destination:</label>
           <select name="destinations" id="destinations">
-            <option class="select-destination">Click to Select Destination</option>
+            <option class="select-destination" id="selectDestination">Click to Select Destination</option>
           </select>
         </form>
+        <button class="request-trip-button">Submit</button>
+        <div class="request-error">error</div>
       </article>
     </section>
   </main>
