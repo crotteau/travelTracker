@@ -93,8 +93,8 @@ function calculateExpenses(destinations, pastTrips) {
             }
         })
     }
-   let plusAgentsFee = Math.round(totalExpenses * 1.1)
-   return plusAgentsFee
+    let plusAgentsFee = Math.round(totalExpenses * 1.1)
+    return plusAgentsFee
 }
 
 // <<>> Trip Request functions
