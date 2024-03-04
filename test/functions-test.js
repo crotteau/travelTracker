@@ -1,3 +1,4 @@
+import allDestinations from './destination-test-data'
 
 // <<>> User Trips
 let currentUserId = 2;
@@ -96,6 +97,52 @@ function calculateExpenses(destinations, pastTrips) {
    return plusAgentsFee
 }
 
+// <<>> Trip Request functions
+let destinationCosts;
+let destinationChoice = '1'
+let currentDestinations = allDestinations.allDestinations
+
+function submitTripRequest(tripDate, tripDuration, travelerNum, destination) {
+    let dateParsed = tripDate.replace('-', '/').replace('-', '/')
+    let tripRequest = {
+        id: 50,
+        userID: currentUserId,
+        destinationID: parseFloat(destination),
+        travelers: parseFloat(travelerNum),
+        date: dateParsed,
+        duration: parseFloat(tripDuration),
+        status: 'pending',
+        suggestedActivities: []
+    }
+    return tripRequest
+}
+
+function findDestinationCosts() {
+    destinationCosts = {
+        lodging: 0,
+        flight: 0
+    }
+    currentDestinations.forEach(destination => {
+        if (destination.id === parseFloat(destinationChoice)) {
+            destinationCosts.lodging = destination.estimatedLodgingCostPerDay
+            destinationCosts.flight = destination.estimatedFlightCostPerPerson
+        }
+    })
+    return destinationCosts
+}
+
+function estimateTripCost(duration, travelers, destinationCosts) {
+    let tripEstimate = {
+        lodgingCost: destinationCosts.lodging,
+        flightCost: destinationCosts.flight,
+        duration: parseFloat(duration),
+        travelers: parseFloat(travelers),
+        total: 0
+    }
+    tripEstimate.total = Math.round(((destinationCosts.lodging * parseFloat(duration)) + (destinationCosts.flight * parseFloat(travelers))) * 1.1)
+    return tripEstimate
+}
+
 export {
     findUser,
     findTrips,
@@ -105,6 +152,9 @@ export {
     findDestination,
     calculateExpenses,
     findTodaysDate,
+    submitTripRequest,
+    findDestinationCosts,
+    estimateTripCost,
     upcomingTrips,
     pastTrips,
     pendingTrips

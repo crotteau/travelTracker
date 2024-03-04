@@ -10,7 +10,10 @@ import {
   findPendingTrips,
   findPastTrips,
   findDestination,
-  calculateExpenses
+  calculateExpenses,
+  submitTripRequest,
+  findDestinationCosts,
+  estimateTripCost
 } from './functions-test'
 
 import chai from 'chai';
@@ -137,7 +140,7 @@ describe('find user info', () => {
   describe('Destination name', () => {
     it('Should find destination name using an ID', () => {
       const upcomingDestinations = findDestination(destinations, upcomingTrips)
-      const pendingDestinations = findDestination(destinations, upcomingTrips)
+      const pendingDestinations = findDestination(destinations, pendingTrips)
       const pastDestinations = findDestination(destinations, pastTrips)
 
       expect(upcomingDestinations[0].destinationID).to.deep.equal('Sydney, Australia')
@@ -146,3 +149,65 @@ describe('find user info', () => {
     })
   })
 });
+
+describe('Trip requests', () => {
+  it('should return an object', () => {
+    const newRequest = submitTripRequest('2024-05-23', '5', '3', '1')
+
+    expect(newRequest).to.be.a('object')
+  }),
+
+  it('should return required properties for POST request', () => {
+    const newRequest = submitTripRequest('2024-05-23', '5', '3', '1')
+
+    expect(newRequest.id).to.be.a('number')
+    expect(newRequest.destinationID).to.be.a('number')
+    expect(newRequest.travelers).to.be.a('number')
+    expect(newRequest.date).to.be.a('string')
+    expect(newRequest.duration).to.be.a('number')
+    expect(newRequest).to.deep.equal({
+      id: 50,
+      userID: 2,
+      destinationID: 1,
+      travelers: 3,
+      date: '2024/05/23',
+      duration: 5,
+      status: 'pending',
+      suggestedActivities: []
+    })
+  })
+});
+
+describe('Calculating trip costs', () => {
+  let destinationEst;
+  let tripCosts;
+  beforeEach(() => {
+    destinationEst = findDestinationCosts()
+    tripCosts = estimateTripCost('7', '4', destinationEst)
+  });
+
+  it('should find lodging and flight costs for a specified destination', () => {
+    expect(destinationEst).to.be.a('object')
+    expect(destinationEst).to.deep.equal({ lodging: 70, flight: 400 })
+  }),
+
+  it('should store nightly lodging cost and duration', () => {
+    expect(tripCosts.lodgingCost).to.deep.equal(70)
+    expect(tripCosts.duration).to.deep.equal(7)
+  }),
+
+  it('should store flight cost and traveler number', () => {
+    expect(tripCosts.flightCost).to.deep.equal(400)
+    expect(tripCosts.travelers).to.deep.equal(4)
+  }),
+
+  it('should calculate total trip estimate including 10% fee', () => {
+    const lodgingExpense = tripCosts.lodgingCost * tripCosts.duration
+    const flightExpense = tripCosts.flightCost * tripCosts.travelers
+
+    expect((lodgingExpense + flightExpense) * 1.1).to.deep.equal(tripCosts.total)
+    expect(tripCosts.total).to.deep.equal(2299)
+  })
+
+});
+
