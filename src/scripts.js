@@ -9,7 +9,7 @@ import './css/styles.css';
 import './images/turing-logo.png'
 
 // <<<>>> Find User Data
-let currentUserId = 7;
+let currentUserId = 45;
 let pastTrips = [];
 let upcomingTrips = [];
 let pendingTrips = [];
@@ -180,8 +180,7 @@ function submitTripRequest(tripDate, tripDuration, travelerNum, destination) {
         status: 'pending',
         suggestedActivities: []
     }
-    // postData(tripRequest)
-    console.log('tripRequest', tripRequest)
+    postData(tripRequest)
 }
 
 function storeCurrentDestinations(destinations) {
@@ -213,7 +212,7 @@ function estimateTripCost(duration, travelers) {
         travelers: parseFloat(travelers),
         total: 0
     }
-    tripEstimate.total = Math.round((destinationCosts.lodging * parseFloat(duration)) + (destinationCosts.flight * parseFloat(travelers)) * 1.1)
+    tripEstimate.total = Math.round(((destinationCosts.lodging * parseFloat(duration)) + (destinationCosts.flight * parseFloat(travelers))) * 1.1)
     displayTripEstimate(tripEstimate)
 }
 
