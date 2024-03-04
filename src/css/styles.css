@@ -30,7 +30,7 @@ header {
 .leftside-trips {
   background: whitesmoke;
   width: 60%;
-  height: 150vh;
+  height: 155vh;
   border-radius: 20px;
   border-style: solid;
   border-color: rgba(107, 221, 207, 1);
@@ -44,11 +44,6 @@ header {
   padding-left: 1.5em;
   padding-bottom: 1em;
   font-size: 2em;
-  /* background-color: rgb(160, 187, 184);
-  border-radius: 10px;
-  border-style: solid;
-  border-color: rgba(107, 221, 207, 1);
-  border-width: 8px; */
 }
 
 .user-trips {
@@ -214,15 +209,21 @@ caption {
   border-color:rgba(249, 198, 66, 1);
   margin-right: 2em;
   margin-top: 3em;
-  height: 75vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: left;
 }
 
 .request {
-  margin-left: 1.5em;
   font-size: 2em;
+  background-color: rgba(212, 189, 129, 1);
+  border-radius: 10px;
+  font-size: 2em;
+  width: fit-content;
+  margin: 1em 0.75em;
+  padding: 0.35em;
+  box-shadow: 1px 1px 10px purple;
 }
 
 .request-input {
@@ -232,6 +233,12 @@ caption {
   width: 70%;
   margin-left: 2em;
   font-size: 1.25em;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 15px;
+  border-color: rgb(112, 206, 183);
+  box-shadow: 1px 1px 20px greenyellow;
+  padding: 0.8em;
 }
 
 label {
@@ -242,11 +249,19 @@ label {
 input {
   height: 1.5em;
   font-size: 0.9em;
+    &:hover {
+      cursor: pointer;
+      border-color: orange;
+    }
 }
 
 select {
   height: 2em;
   font-size: 0.9em;
+    &:hover {
+      cursor: pointer;
+      border-color: orange;
+    }
 }
 
 .request-error {
@@ -258,10 +273,18 @@ select {
 .request-trip-button {
   width: 35%;
   border-radius: 15px;
-  height: 3em;
+  height: 2.5em;
   align-self: center;
   margin-top: 1em;
-  font-size: 0.8em;
+  font-family: "Phudu", sans-serif;
+  font-weight: 500;
+  font-size: 1em;
+  border-color: rgba(107, 221, 207, 1);
+  border-width: 4px;
+    &:hover {
+      background-color: rgb(221, 235, 164);
+      cursor: pointer;
+    }
 }
 
 .cost-est {
@@ -270,12 +293,23 @@ select {
 
 h4 {
   font-size: 1.5em;
-  margin-top: 2em;
   margin-bottom: 0em;
   margin-left: 1em;
+  margin-top: 0.4em;
 }
 
 .trip-request-table {
   text-align: left;
   margin-left: 2em;
+  width: 95%;
+}
+
+.projected-expenses {
+  width: 82%;
+  border-style: dashed;
+  border-width: 5px;
+  border-color: rgb(64, 183, 183);
+  border-radius: 15px;
+  margin: 2em;
+  padding-bottom: 1.25em;
 }

@@ -78,6 +78,8 @@ function findUser(travelers) {
 function findTrips(trips) {
     let userTrips = trips.filter(trip => {
         return trip.userID === currentUserId
+    }).sort((a, b) => {
+        return a.date.localeCompare(b.date)
     })
     findUpcomingTrips(userTrips)
     findPendingTrips(userTrips)
