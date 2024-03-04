@@ -1,5 +1,5 @@
 import { getData } from './apiCalls'
-import { submitTripRequest } from './scripts'
+import { submitTripRequest, estimateTripCost, findDestinationCosts} from './scripts'
 
 const greeting = document.querySelector('.username')
 const pastTripsGrid = document.querySelector('.past-trips-grid')
@@ -15,8 +15,17 @@ const tripDuration = document.querySelector('#tripDuration')
 const travelerNum = document.querySelector('#travelerNum')
 const requestTripButton = document.querySelector('.request-trip-button')
 const requestError = document.querySelector('.request-error')
+const lodgingEst = document.querySelector('.lodging-est')
+const lodgingDaysEst = document.querySelector('.lodging-days-est')
+const flightEst = document.querySelector('.flight-est')
+const flightQuantityEst = document.querySelector('.flight-quantity-est')
+const totalEst = document.querySelector('.total-est')
 
 window.addEventListener('load', getData)
+destinationContainer.addEventListener('mouseout', () => {
+    findDestinationCosts()
+})
+
 requestTripButton.addEventListener('click', () => {
     checkForCompletion(tripDate.value, tripDuration.value, travelerNum.value, destinationContainer.value)
 })
@@ -53,13 +62,12 @@ function displayDestinationOptions(destinations) {
     })
     for (var i = 0; i < travelOptions.length; i++) {
         destinationContainer.insertAdjacentHTML('afterbegin', 
-        `<option value="${travelOptions[i].id}">${travelOptions[i].destination}</option>`)
+        `<option class="select-destination" value="${travelOptions[i].id}">${travelOptions[i].destination}</option>`)
     }
 }
 
 function checkForCompletion(tripDate, tripDuration, travelerNum, destination) {
     if (!tripDate) {
-        console.log('hiiiiii')
         requestError.innerText = 'Please choose a trip date'
     } else if (!tripDuration) {
         requestError.innerText = 'Please choose trip duration'
@@ -68,6 +76,7 @@ function checkForCompletion(tripDate, tripDuration, travelerNum, destination) {
     } else if (destination === 'Click to Select Destination') {
         requestError.innerText = 'Please choose a destination'
     } else {
+        estimateTripCost(tripDuration, travelerNum)
         submitTripRequest(tripDate, tripDuration, travelerNum, destination)
         resetError()
     }
@@ -81,13 +90,24 @@ function resetError() {
     requestError.innerText = ''
 }
 
+function displayTripEstimate(estimate) {
+    lodgingEst.innerText = `$${estimate.lodgingCost}`
+    lodgingDaysEst.innerText = `x ${estimate.duration} days`
+    flightEst.innerText = `$${estimate.flightCost}`
+    flightQuantityEst.innerText = `x ${estimate.travelers} travelers`
+    totalEst.innerText = `$${estimate.total}`
+
+}
+
 export {
     displayUserName,
     displayTripInfo,
     displayExpenses,
     displayDestinationOptions,
     displayPostError,
+    displayTripEstimate,
     pastTripsGrid,
     upcomingTripsGrid,
-    pendingTripsGrid
+    pendingTripsGrid,
+    destinationContainer
 }

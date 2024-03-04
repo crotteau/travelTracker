@@ -1,6 +1,6 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
-import { displayUserName, displayTripInfo, pastTripsGrid, upcomingTripsGrid, pendingTripsGrid, displayExpenses, displayDestinationOptions } from './domUpdates'
+import { displayUserName, displayTripInfo, pastTripsGrid, upcomingTripsGrid, pendingTripsGrid, displayExpenses, displayDestinationOptions, destinationContainer, displayTripEstimate } from './domUpdates'
 import { postData } from './apiCalls'
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
@@ -30,7 +30,8 @@ function initiateDestinationFunctions(destinations) {
         displayTripInfo(pastTrips, pastTripsGrid),
         displayTripInfo(upcomingTrips, upcomingTripsGrid),
         displayTripInfo(pendingTrips, pendingTripsGrid),
-        displayDestinationOptions(destinations)
+        displayDestinationOptions(destinations),
+        storeCurrentDestinations(destinations)
 }
 
 function findUser(travelers) {
@@ -162,24 +163,64 @@ function calculateExpenses(destinations, pastTrips) {
 }
 
 // <<>> Trip Request
+let destinationCosts;
+let currentDestinations = [];
+
 function submitTripRequest(tripDate, tripDuration, travelerNum, destination) {
     let dateParsed = tripDate.replace('-', '/').replace('-', '/')
     let tripRequest = {
-        id: 4,
-        userId: currentUserId,
-        destinationID: destination,
-        travelers: travelerNum,
+        id: Date.now(),
+        userID: currentUserId,
+        destinationID: parseFloat(destination),
+        travelers: parseFloat(travelerNum),
         date: dateParsed,
-        duration: tripDuration,
+        duration: parseFloat(tripDuration),
         status: 'pending',
         suggestedActivities: []
     }
-    postData(tripRequest)
+    // postData(tripRequest)
+    console.log('tripRequest', tripRequest)
+}
+
+function storeCurrentDestinations(destinations) {
+    destinations.forEach(destination => {
+        currentDestinations.push(destination)
+    })
+    return currentDestinations
+}
+
+function findDestinationCosts() {
+    destinationCosts = {
+        lodging: 0,
+        flight: 0
+    }
+    currentDestinations.forEach(destination => {
+        if (destination.id === parseFloat(destinationContainer.value)) {
+            destinationCosts.lodging = destination.estimatedLodgingCostPerDay
+            destinationCosts.flight = destination.estimatedFlightCostPerPerson
+        }
+    })
+    return destinationCosts
+}
+
+function estimateTripCost(duration, travelers) {
+    let tripEstimate = {
+        lodgingCost: destinationCosts.lodging,
+        flightCost: destinationCosts.flight,
+        duration: parseFloat(duration),
+        travelers: parseFloat(travelers),
+        total: 0
+    }
+    tripEstimate.total = Math.round((destinationCosts.lodging * parseFloat(duration)) + (destinationCosts.flight * parseFloat(travelers)) * 1.1)
+    displayTripEstimate(tripEstimate)
 }
 
 export {
     initiateUserFunctions,
     initiateTripFunctions,
     initiateDestinationFunctions,
-    submitTripRequest
+    submitTripRequest,
+    estimateTripCost,
+    findDestinationCosts
 }
+

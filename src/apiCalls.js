@@ -32,8 +32,7 @@ function postData(newTrip) {
             'Content-Type': 'application/json'
         }
     })
-    .then(resp => resp.json(),
-        console.log(resp))
+    .then(resp => resp.json())
     .catch(error => {
         console.log(error)
         displayPostError()

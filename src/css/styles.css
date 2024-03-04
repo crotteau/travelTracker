@@ -52,8 +52,14 @@ header {
 }
 
 .user-trips {
-  margin-top: 5em;
-  margin-left: 2em;
+  margin-top: 1.5em;
+  margin-left: 1.5em;
+  font-size: 1.6em;
+}
+
+.sub-header {
+  font-size: 1.5em;
+  margin-top: 0.4em;
 }
 
 .past-trips-grid,
@@ -62,7 +68,7 @@ header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 15px;
-  height: 22vh;
+  height: 27vh;
   overflow-y: scroll;
 }
 
@@ -114,7 +120,7 @@ li{
 
 .pending-trips{
   background: rgba(227, 235, 176, 1);
-  height: 30vh;
+  height: 34vh;
   width: 90%;
   padding: 1em;
   margin: 1em;
@@ -125,7 +131,7 @@ li{
 
 .upcoming-trips {
   background: rgba(211, 200, 147, 1);
-  height: 30vh;
+  height: 34vh;
   width: 90%;
   padding: 1em;
   margin-top: 2em;
@@ -208,15 +214,68 @@ caption {
   border-color:rgba(249, 198, 66, 1);
   margin-right: 2em;
   margin-top: 3em;
-  height: 50vh;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.request {
+  margin-left: 1.5em;
+  font-size: 2em;
 }
 
 .request-input {
   display: flex;
   flex-direction: column;
+  align-items: left;
+  width: 70%;
+  margin-left: 2em;
+  font-size: 1.25em;
+}
+
+label {
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+input {
+  height: 1.5em;
+  font-size: 0.9em;
+}
+
+select {
+  height: 2em;
+  font-size: 0.9em;
 }
 
 .request-error {
-  font-size: 1em;
+  font-size: 1.2em;
   color: red;
+  margin-top: 0.25em;
+}
+
+.request-trip-button {
+  width: 35%;
+  border-radius: 15px;
+  height: 3em;
+  align-self: center;
+  margin-top: 1em;
+  font-size: 0.8em;
+}
+
+.cost-est {
+  list-style-type: none;
+}
+
+h4 {
+  font-size: 1.5em;
+  margin-top: 2em;
+  margin-bottom: 0em;
+  margin-left: 1em;
+}
+
+.trip-request-table {
+  text-align: left;
+  margin-left: 2em;
 }
