@@ -9,7 +9,7 @@ import './css/styles.css';
 import './images/turing-logo.png'
 
 // <<<>>> Find User Data
-let currentUserId = 45;
+let currentUserId = 42;
 let pastTrips = [];
 let upcomingTrips = [];
 let pendingTrips = [];
@@ -79,7 +79,7 @@ function findTrips(trips) {
     let userTrips = trips.filter(trip => {
         return trip.userID === currentUserId
     }).sort((a, b) => {
-        return a.date.localeCompare(b.date)
+        return b.date.localeCompare(a.date)
     })
     findUpcomingTrips(userTrips)
     findPendingTrips(userTrips)
@@ -180,7 +180,8 @@ function submitTripRequest(tripDate, tripDuration, travelerNum, destination) {
         status: 'pending',
         suggestedActivities: []
     }
-    postData(tripRequest)
+    // postData(tripRequest)
+    console.log(tripRequest)
 }
 
 function storeCurrentDestinations(destinations) {
