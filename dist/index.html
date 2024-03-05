@@ -42,31 +42,31 @@
     </section>
     <section class="rightside-trips">
       <article class="trip-expenses">
-        <h2 class="expenses-header">Annual Trip Expenses</h2>
-        <table class="expenses-table">
-          <caption>*includes 10% agent's fee</caption>
+        <h2 tabindex="0" class="expenses-header" aria-label="Expenses Table">Annual Trip Expenses</h2>
+        <table tabindex="0" class="expenses-table">
+          <caption aria-label="Annual money spend on trips">*includes 10% agent's fee</caption>
           <thead>
-            <tr>
+            <tr tabindex="0">
               <th scope="col" class="column-header">Expense</th>
               <th scope="col" class="column-header">Cost</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr tabindex="0">
               <th scope="row">Lodging</th>
               <td class="lodging-cost"></td>
             </tr>
-            <tr>
+            <tr tabindex="0">
               <th scope="row">Flights</th>
               <td class="flight-cost"></td>
             </tr>
           </tbody>
           <tfoot>
-            <tr>
+            <tr tabindex="0">
               <th scope="row">Total Expenses</th>
               <td colspan="2" class="total-expenses"></td>
             </tr>
-            <tr>
+            <tr tabindex="0">
               <th scope="row">Grand Total*</th>
               <td colspan="2" class="agents-fee"></td>
             </tr>
@@ -75,7 +75,7 @@
       </article>
       <article class="request-trips">
         <h2 class="request">Request a Trip</h2>
-        <form class="request-input">
+        <form tabindex="0" class="request-input" aria-label="Request a trip form">
           <label for="tripDate">Date:</label>
           <input type="date" name="trip-date" id="tripDate">
           <label for="tripDuration">Duration (days):</label>
@@ -90,31 +90,31 @@
           <button class="request-trip-button">Submit</button>
         </form>
         <article class="projected-expenses">
-          <h4>Estimated Trip Cost</h4>
-          <table class="trip-request-table">
+          <h4 tabindex="0">Estimated Trip Cost</h4>
+          <table tabindex="0" class="trip-request-table">
             <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
+              <tr tabindex="0" >
+                <th scope="col">Expense</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Multiplier</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr tabindex="0" >
                 <th scope="row">Lodging:</th>
                 <td class="lodging-est"></td>
                 <td class="lodging-days-est"></td>
               </tr>
-              <tr>
+              <tr tabindex="0" >
                 <th scope="row">Flights:</th>
                 <td class="flight-est"></td>
                 <td class="flight-quantity-est"></td>
               </tr>
-              <tr>
+              <tr tabindex="0" >
                 <th scope="row">Estimated Total:</th>
                 <td class="total-est"></td>
               </tr>
-              <caption>*includes 10% agent's fee</caption>
+              <caption aria-label="Estimated cost of trip">*includes 10% agent's fee</caption>
             </tbody>
         </article>
       </article>
