@@ -1,5 +1,15 @@
-import { initiateUserFunctions, initiateTripFunctions, initiateDestinationFunctions } from "./scripts"
+import { initiateUserFunctions, initiateTripFunctions, initiateDestinationFunctions, loadUserLogin } from "./scripts"
 import { displayPostError } from "./domUpdates"
+
+function getUserInfo(userID) {
+    const loginUser = fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
+        .then(resp => resp.json())
+    
+        Promise.all([loginUser])
+        .then(data => {loadUserLogin(data)})
+        .catch(error => console.log(error))
+}
+
 
 function getData() {
     const allTravelers = fetch('http://localhost:3001/api/v1/travelers')
@@ -42,5 +52,6 @@ function postData(newTrip) {
 
 export {
     getData,
-    postData
+    postData,
+    getUserInfo
 }

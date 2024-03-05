@@ -1,5 +1,5 @@
 import { getData } from './apiCalls'
-import { submitTripRequest, estimateTripCost, findDestinationCosts} from './scripts'
+import { submitTripRequest, estimateTripCost, findDestinationCosts, verifyLogin, pendingTrips, findPendingTrips, userTrips} from './scripts'
 
 const greeting = document.querySelector('.username')
 const pastTripsGrid = document.querySelector('.past-trips-grid')
@@ -20,8 +20,19 @@ const lodgingDaysEst = document.querySelector('.lodging-days-est')
 const flightEst = document.querySelector('.flight-est')
 const flightQuantityEst = document.querySelector('.flight-quantity-est')
 const totalEst = document.querySelector('.total-est')
+const username = document.querySelector('#username')
+const password = document.querySelector('#userPassword')
+const loginButton = document.querySelector('.login-button')
+const main = document.querySelector('main')
+const userLogin = document.querySelector('.user-login-page')
+const loginError = document.querySelector('.login-error')
 
-window.addEventListener('load', getData)
+// window.addEventListener('load', getData)
+loginButton.addEventListener('click', (event) => {
+    event.preventDefault()
+    verifyLogin()
+})
+
 destinationContainer.addEventListener('mouseout', () => {
     findDestinationCosts()
 })
@@ -32,6 +43,11 @@ requestTripButton.addEventListener('click', (event) => {
     checkForCompletion(tripDate.value, tripDuration.value, travelerNum.value, destinationContainer.value)
 })
 
+function displayLogin() {
+    getData()
+    main.classList.remove('hidden')
+    userLogin.classList.add('hidden')
+}
 
 function displayUserName(userInfo) {
     greeting.innerText = `Welcome, ${userInfo.name}!`
@@ -89,6 +105,8 @@ function checkForCompletion(tripDate, tripDuration, travelerNum, destination) {
     } else {
         estimateTripCost(tripDuration, travelerNum)
         submitTripRequest(tripDate, tripDuration, travelerNum, destination)
+        getData()
+        displayTripInfo(pendingTrips, pendingTripsGrid)
         resetError()
     }
 }
@@ -117,8 +135,12 @@ export {
     displayDestinationOptions,
     displayPostError,
     displayTripEstimate,
+    displayLogin,
     pastTripsGrid,
     upcomingTripsGrid,
     pendingTripsGrid,
-    destinationContainer
+    destinationContainer,
+    username,
+    password,
+    loginError
 }
