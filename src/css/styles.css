@@ -9,17 +9,58 @@ body {
 
 main {
   display: flex;
-    /* font-family: "Kosugi", sans-serif;
-    font-weight: 400;
-    font-style: normal; */
   font-family: "Phudu", sans-serif;
   font-optical-sizing: auto;
   font-weight: regular 400;
   font-style: normal;  
 }
 
-.user-login-info {
-  display: visible;
+.user-login-page {
+  font-family: "Phudu", sans-serif;
+  font-size: 1.5em;
+  font-weight: 500;
+  background-color: whitesmoke;
+  border-style: solid;
+  border-radius: 20px;
+  border-color: orange;
+  border-width: 5px;
+  height: 50vh;
+  width: 50vw;
+  margin: auto;
+  margin-top: 15vh;
+}
+
+.user-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20%;
+  margin-top: 12%;
+  width: 60%;
+}
+
+.login-input {
+  margin-top: 0.5em;
+}
+
+.login-error {
+  font-size: 0.9em;
+  color: red;
+  margin-top: 0.25em;
+}
+
+.login-button {
+  width: 6em;
+  height: 2em;
+  font-family: "Phudu", sans-serif;
+  font-size: 1em;
+  align-self: center;
+  border-radius: 15px;
+  margin-top: 1em;
+   &:hover {
+    background-color: rgb(157, 237, 148);
+    cursor: pointer;
+   }
 }
 
 h1 {

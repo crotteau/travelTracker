@@ -1,6 +1,6 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
-import { displayUserName, displayTripInfo, pastTripsGrid, upcomingTripsGrid, pendingTripsGrid, displayExpenses, displayDestinationOptions, destinationContainer, displayTripEstimate, username, password, displayLogin } from './domUpdates'
+import { displayUserName, displayTripInfo, pastTripsGrid, upcomingTripsGrid, pendingTripsGrid, displayExpenses, displayDestinationOptions, destinationContainer, displayTripEstimate, username, password, displayLogin, loginError } from './domUpdates'
 import { postData, getUserInfo } from './apiCalls'
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
@@ -17,10 +17,10 @@ let pendingTrips = [];
 // <<>> User Login
 
 function verifyLogin() {
-    if (password.value === 'travel' && username.value.includes('traveler')) {
+    if (password.value === 'travel' && username.value.includes('traveler') && username.value.length < 11) {
         checkUsername()
     } else {
-        console.log('error')
+        loginError.innerText = 'Incorrect username or password. Please try again'
     }
 }
 
@@ -40,7 +40,6 @@ function checkUsername() {
 function loadUserLogin(user) {
     currentUserId = user[0].id
     displayLogin()
-    console.log('currentUserID', user[0].id)
     return currentUserId
 }
 
@@ -64,6 +63,7 @@ function initiateDestinationFunctions(destinations) {
         storeCurrentDestinations(destinations)
 }
 
+// <<>> Find user info
 function findUser(travelers) {
     let userInfo = travelers.find(traveler => {
         return traveler.id === currentUserId
@@ -71,39 +71,6 @@ function findUser(travelers) {
     displayUserName(userInfo)
     return userInfo
 }
-// 0: id : 1
-// name : "Ham Leadbeater"
-// travelerType: "relaxer"
-
-// trip object{
-//     "id": 1,
-//     "userID": 44,
-//     "destinationID": 49,
-//     "travelers": 1,
-//     "date": "2022/09/16",
-//     "duration": 8,
-//     "status": "approved",
-//     "suggestedActivities": []
-// }
-
-// upcoming trips{
-//     "id": 3,
-//     "userID": 3,
-//     "destinationID": 22,
-//     "travelers": 4,
-//     "date": "2022/05/22",
-//     "duration": 17,
-//     "status": "approved",
-//     "suggestedActivities": []
-// }
-// destinations object {
-//     "id": 1,
-//     "destination": "Lima, Peru",
-//     "estimatedLodgingCostPerDay": 70,
-//     "estimatedFlightCostPerPerson": 400,
-//     "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
-//     "alt": "overview of city buildings with a clear sky"
-// }
 
 function findTrips(trips) {
     let userTrips = trips.filter(trip => {
@@ -114,6 +81,8 @@ function findTrips(trips) {
     findUpcomingTrips(userTrips)
     findPendingTrips(userTrips)
     findPastTrips(userTrips)
+    console.log('userTrips', userTrips)
+    return userTrips
 }
 
 function findTodaysDate() {
@@ -210,8 +179,7 @@ function submitTripRequest(tripDate, tripDuration, travelerNum, destination) {
         status: 'pending',
         suggestedActivities: []
     }
-    // postData(tripRequest)
-    console.log(tripRequest)
+    postData(tripRequest)
 }
 
 function storeCurrentDestinations(destinations) {
@@ -256,6 +224,8 @@ export {
     estimateTripCost,
     findDestinationCosts,
     verifyLogin,
-    loadUserLogin
+    loadUserLogin,
+    findPendingTrips,
+    pendingTrips
 }
 

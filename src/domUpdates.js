@@ -1,5 +1,5 @@
 import { getData } from './apiCalls'
-import { submitTripRequest, estimateTripCost, findDestinationCosts, verifyLogin} from './scripts'
+import { submitTripRequest, estimateTripCost, findDestinationCosts, verifyLogin, pendingTrips, findPendingTrips, userTrips} from './scripts'
 
 const greeting = document.querySelector('.username')
 const pastTripsGrid = document.querySelector('.past-trips-grid')
@@ -25,6 +25,7 @@ const password = document.querySelector('#userPassword')
 const loginButton = document.querySelector('.login-button')
 const main = document.querySelector('main')
 const userLogin = document.querySelector('.user-login-page')
+const loginError = document.querySelector('.login-error')
 
 // window.addEventListener('load', getData)
 loginButton.addEventListener('click', (event) => {
@@ -104,6 +105,8 @@ function checkForCompletion(tripDate, tripDuration, travelerNum, destination) {
     } else {
         estimateTripCost(tripDuration, travelerNum)
         submitTripRequest(tripDate, tripDuration, travelerNum, destination)
+        getData()
+        displayTripInfo(pendingTrips, pendingTripsGrid)
         resetError()
     }
 }
@@ -138,5 +141,6 @@ export {
     pendingTripsGrid,
     destinationContainer,
     username,
-    password
+    password,
+    loginError
 }
