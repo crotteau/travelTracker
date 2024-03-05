@@ -28,6 +28,7 @@ destinationContainer.addEventListener('mouseout', () => {
 
 requestTripButton.addEventListener('click', (event) => {
     event.preventDefault()
+    findDestinationCosts()
     checkForCompletion(tripDate.value, tripDuration.value, travelerNum.value, destinationContainer.value)
 })
 
@@ -37,22 +38,25 @@ function displayUserName(userInfo) {
 }
 
 function displayTripInfo(trips, grid) {
+    let tabIndex = 0
     for (var i = 0; i < trips.length; i++) {
-        grid.insertAdjacentHTML('afterbegin',
-            `<ul class="trip" style="background-image: url(${trips[i].image}); background-size: cover">
-                <h3 class="destination-name">${trips[i].destinationID}</h3>
-                <div class="trip-list"> 
+        tabIndex += 1
+        grid.insertAdjacentHTML('beforeend',
+            `<div class="trip" tabindex="${tabIndex}" style="background-image: url(${trips[i].image}); background-size: cover">
+                <h4 class="destination-name">${trips[i].destinationID}</h4>
+                <ul class="trip-list"> 
                     <li>Date: ${trips[i].date}</li>
                     <li>Duration: ${trips[i].duration} days</li>
                     <li>Travelers: ${trips[i].travelers}</li>
-                </div>
-            </ul>`)
+                </ul>
+            </div>`)
     }
     if (trips.length === 0) {
-        grid.insertAdjacentHTML('afterbegin',
-            `<ul class="trip" style="background-color: rgba(230, 236, 206, 1)">
-                <h3 class="destination-name">No trips to display!</h3>
-            </ul>`)
+        tabIndex = 1
+        grid.insertAdjacentHTML('beforeend',
+            `<div class="trip" tabindex="${tabIndex}" style="background-color: rgba(230, 236, 206, 1)">
+                <h4 class="destination-name">No trips to display!</h4>
+            </div>`)
     }
 }
 
