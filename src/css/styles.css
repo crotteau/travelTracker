@@ -18,6 +18,10 @@ main {
   font-style: normal;  
 }
 
+.user-login-info {
+  display: visible;
+}
+
 h1 {
   height: 8vh;
   font-family: "Faster One", system-ui;

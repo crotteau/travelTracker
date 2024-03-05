@@ -1,7 +1,7 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
-import { displayUserName, displayTripInfo, pastTripsGrid, upcomingTripsGrid, pendingTripsGrid, displayExpenses, displayDestinationOptions, destinationContainer, displayTripEstimate } from './domUpdates'
-import { postData } from './apiCalls'
+import { displayUserName, displayTripInfo, pastTripsGrid, upcomingTripsGrid, pendingTripsGrid, displayExpenses, displayDestinationOptions, destinationContainer, displayTripEstimate, username, password, displayLogin } from './domUpdates'
+import { postData, getUserInfo } from './apiCalls'
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
 
@@ -9,10 +9,40 @@ import './css/styles.css';
 import './images/turing-logo.png'
 
 // <<<>>> Find User Data
-let currentUserId = 42;
+let currentUserId;
 let pastTrips = [];
 let upcomingTrips = [];
 let pendingTrips = [];
+
+// <<>> User Login
+
+function verifyLogin() {
+    if (password.value === 'travel' && username.value.includes('traveler')) {
+        checkUsername()
+    } else {
+        console.log('error')
+    }
+}
+
+function checkUsername() {
+    let checkName = username.value.split('')
+    let userID;
+
+    if (checkName.length === 9) {
+        userID = Number(checkName[8]) 
+        getUserInfo(userID)
+    } else if (checkName.length === 10) {
+        userID = Number(checkName[8] + checkName[9]) 
+        getUserInfo(userID)
+    }
+}
+
+function loadUserLogin(user) {
+    currentUserId = user[0].id
+    displayLogin()
+    console.log('currentUserID', user[0].id)
+    return currentUserId
+}
 
 function initiateUserFunctions(travelers) {
     findUser(travelers)
@@ -217,12 +247,15 @@ function estimateTripCost(duration, travelers) {
     displayTripEstimate(tripEstimate)
 }
 
+
 export {
     initiateUserFunctions,
     initiateTripFunctions,
     initiateDestinationFunctions,
     submitTripRequest,
     estimateTripCost,
-    findDestinationCosts
+    findDestinationCosts,
+    verifyLogin,
+    loadUserLogin
 }
 
