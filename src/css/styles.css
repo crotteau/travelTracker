@@ -3,6 +3,10 @@ body {
   background: rgba(207, 201, 188, 1);
 }
 
+.hidden {
+  display: none;
+}
+
 main {
   display: flex;
     /* font-family: "Kosugi", sans-serif;
