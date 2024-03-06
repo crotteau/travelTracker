@@ -143,6 +143,19 @@ function estimateTripCost(duration, travelers, destinationCosts) {
     return tripEstimate
 }
 
+// <<>> Login function
+function checkUsername(username) {
+    let checkName = username.split('')
+    let userID;
+
+    if (checkName.length === 9) {
+        userID = Number(checkName[8])
+    } else if (checkName.length === 10) {
+        userID = Number(checkName[8] + checkName[9])
+    }
+    return userID
+}
+
 export {
     findUser,
     findTrips,
@@ -155,6 +168,7 @@ export {
     submitTripRequest,
     findDestinationCosts,
     estimateTripCost,
+    checkUsername,
     upcomingTrips,
     pastTrips,
     pendingTrips

@@ -1,5 +1,5 @@
 import { getData } from './apiCalls'
-import { submitTripRequest, estimateTripCost, findDestinationCosts, verifyLogin, pendingTrips, findPendingTrips, userTrips} from './scripts'
+import { submitTripRequest, estimateTripCost, findDestinationCosts, verifyLogin } from './scripts'
 
 const greeting = document.querySelector('.username')
 const pastTripsGrid = document.querySelector('.past-trips-grid')
@@ -26,8 +26,11 @@ const loginButton = document.querySelector('.login-button')
 const main = document.querySelector('main')
 const userLogin = document.querySelector('.user-login-page')
 const loginError = document.querySelector('.login-error')
+const removePending = document.getElementById('pendingTrips')
+const removeUpcoming = document.getElementById('upcomingTrips');
+const removePast = document.getElementById('pastTrips');
 
-// window.addEventListener('load', getData)
+
 loginButton.addEventListener('click', (event) => {
     event.preventDefault()
     verifyLogin()
@@ -53,12 +56,17 @@ function displayUserName(userInfo) {
     greeting.innerText = `Welcome, ${userInfo.name}!`
 }
 
+function resetTripDisplay(element) {
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
+}
+
 function displayTripInfo(trips, grid) {
-    let tabIndex = 0
+    resetTripDisplay(grid)
     for (var i = 0; i < trips.length; i++) {
-        tabIndex += 1
         grid.insertAdjacentHTML('beforeend',
-            `<div class="trip" tabindex="${tabIndex}" style="background-image: url(${trips[i].image}); background-size: cover">
+            `<div class="trip" tabindex="0" style="background-image: url(${trips[i].image}); background-size: cover">
                 <h4 class="destination-name">${trips[i].destinationID}</h4>
                 <ul class="trip-list"> 
                     <li>Date: ${trips[i].date}</li>
@@ -68,12 +76,12 @@ function displayTripInfo(trips, grid) {
             </div>`)
     }
     if (trips.length === 0) {
-        tabIndex = 1
         grid.insertAdjacentHTML('beforeend',
-            `<div class="trip" tabindex="${tabIndex}" style="background-color: rgba(230, 236, 206, 1)">
+            `<div class="trip" tabindex="0" style="background-color: rgba(230, 236, 206, 1)">
                 <h4 class="destination-name">No trips to display!</h4>
             </div>`)
     }
+
 }
 
 function displayExpenses(totalLodgingCost, totalFlightCost, totalExpenses, plusAgentsFee) {
@@ -88,8 +96,8 @@ function displayDestinationOptions(destinations) {
         return b.destination.localeCompare(a.destination)
     })
     for (var i = 0; i < travelOptions.length; i++) {
-        destinationContainer.insertAdjacentHTML('afterbegin', 
-        `<option class="select-destination" value="${travelOptions[i].id}">${travelOptions[i].destination}</option>`)
+        destinationContainer.insertAdjacentHTML('afterbegin',
+            `<option class="select-destination" value="${travelOptions[i].id}">${travelOptions[i].destination}</option>`)
     }
 }
 
@@ -104,9 +112,11 @@ function checkForCompletion(tripDate, tripDuration, travelerNum, destination) {
         requestError.innerText = 'Please choose a destination'
     } else {
         estimateTripCost(tripDuration, travelerNum)
+        debugger
+        resetTripDisplay(removePast)
+        resetTripDisplay(removePending)
+        resetTripDisplay(removeUpcoming)
         submitTripRequest(tripDate, tripDuration, travelerNum, destination)
-        getData()
-        displayTripInfo(pendingTrips, pendingTripsGrid)
         resetError()
     }
 }
@@ -136,11 +146,15 @@ export {
     displayPostError,
     displayTripEstimate,
     displayLogin,
+    resetTripDisplay,
     pastTripsGrid,
     upcomingTripsGrid,
     pendingTripsGrid,
     destinationContainer,
     username,
     password,
-    loginError
+    loginError,
+    removePending,
+    removePast,
+    removeUpcoming
 }

@@ -27,9 +27,6 @@ function getData() {
         initiateUserFunctions(allTravelers.travelers)
         initiateTripFunctions(allTrips.trips)
         initiateDestinationFunctions(allDestinations.destinations)
-        // console.log('allTravelers', allTravelers.travelers)
-        // console.log('allTrips', allTrips.trips)
-        // console.log('allDestinations', allDestinations.destinations)
     })
     .catch(error => console.log(error))
 }
@@ -42,7 +39,10 @@ function postData(newTrip) {
             'Content-Type': 'application/json'
         }
     })
-    .then(resp => resp.json())
+    .then(resp => {
+        resp.json()
+        getData()
+    })
     .catch(error => {
         console.log(error)
         displayPostError()

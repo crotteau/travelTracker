@@ -1,5 +1,4 @@
 body {
-  /* background: linear-gradient(rgba(230, 236, 206, 1), rgba(218, 218, 217, 1)); */
   background: rgba(207, 201, 188, 1);
 }
 
@@ -12,7 +11,7 @@ main {
   font-family: "Phudu", sans-serif;
   font-optical-sizing: auto;
   font-weight: regular 400;
-  font-style: normal;  
+  font-style: normal;
 }
 
 .user-login-page {
@@ -23,11 +22,12 @@ main {
   border-style: solid;
   border-radius: 20px;
   border-color: orange;
-  border-width: 5px;
+  border-width: 8px;
   height: 50vh;
   width: 50vw;
   margin: auto;
   margin-top: 15vh;
+  box-shadow: 1px 1px 10px rgb(0, 0, 0);
 }
 
 .user-login {
@@ -57,10 +57,11 @@ main {
   align-self: center;
   border-radius: 15px;
   margin-top: 1em;
-   &:hover {
-    background-color: rgb(157, 237, 148);
+
+  &:hover {
+    background-color: rgb(214, 235, 156);
     cursor: pointer;
-   }
+  }
 }
 
 h1 {
@@ -129,14 +130,16 @@ h3 {
   margin-left: 0px;
   height: 20vh;
   box-shadow: 1px 1px 5px #a5a5a5;
+
   &:hover {
-      border-style: solid;
-      border-color: rgba(249, 198, 66, 1); 
-      border-width: 4px;
-    }
+    border-style: solid;
+    border-color: rgba(249, 198, 66, 1);
+    border-width: 4px;
+  }
+
   &:focus {
     border-style: solid;
-    border-color: rgba(249, 198, 66, 1); 
+    border-color: rgba(249, 198, 66, 1);
     border-width: 5px;
   }
 }
@@ -153,24 +156,24 @@ h3 {
   font-size: 1.1em;
 }
 
-li{
+li {
   margin: 0.5em;
   margin-left: 1.5em;
   width: 8em;
   opacity: 100;
 }
 
-.trip-list{
+.trip-list {
   background: whitesmoke;
   box-shadow: 1px 1px 5px black;
-  width:fit-content;
+  width: fit-content;
   opacity: 0.95;
   padding: 0.3em;
   margin-left: 1.5em;
   border-radius: 15px;
 }
 
-.pending-trips{
+.pending-trips {
   background: rgba(227, 235, 176, 1);
   height: 34vh;
   width: 90%;
@@ -217,7 +220,7 @@ li{
   border-style: solid;
   border-width: 5px;
   border-radius: 20px;
-  border-color:rgba(220, 255, 78, 1);
+  border-color: rgba(220, 255, 78, 1);
   height: 40vh;
   margin-right: 2em;
   display: flex;
@@ -240,7 +243,7 @@ li{
   background-color: (220, 255, 78, 1);
 }
 
-.column-header{
+.column-header {
   font-size: 1.5em;
   width: 5em;
 }
@@ -263,7 +266,7 @@ caption {
   border-style: solid;
   border-width: 5px;
   border-radius: 20px;
-  border-color:rgba(249, 198, 66, 1);
+  border-color: rgba(249, 198, 66, 1);
   margin-right: 2em;
   margin-top: 3em;
   height: 90vh;
@@ -306,19 +309,21 @@ label {
 input {
   height: 1.5em;
   font-size: 0.9em;
-    &:hover {
-      cursor: pointer;
-      border-color: orange;
-    }
+
+  &:hover {
+    cursor: pointer;
+    border-color: orange;
+  }
 }
 
 select {
   height: 2em;
   font-size: 0.9em;
-    &:hover {
-      cursor: pointer;
-      border-color: orange;
-    }
+
+  &:hover {
+    cursor: pointer;
+    border-color: orange;
+  }
 }
 
 .request-error {
@@ -338,10 +343,11 @@ select {
   font-size: 1em;
   border-color: rgba(107, 221, 207, 1);
   border-width: 4px;
-    &:hover {
-      background-color: rgb(221, 235, 164);
-      cursor: pointer;
-    }
+
+  &:hover {
+    background-color: rgb(221, 235, 164);
+    cursor: pointer;
+  }
 }
 
 .cost-est {
