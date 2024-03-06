@@ -2,7 +2,7 @@
 A website where you can track your upcoming and past trips, see how much money you spend on travel annually, request new trips to a travel agent, and view potential lodging and flight costs!
 
 ## Background
-This project was a final assessment for a Module 2 course at Turing. The goal of this project was to create an application to manage and track different trips for users. It called upon topics we learned in this module such as object and array prototype methods, implementing network requests, and using test driven development. 
+This project was a final assessment for a Module 2 course at Turing. The goal of this project was to create an application to manage and track different trips for users. It called upon topics we learned in this module such as object and array prototype methods, implementing network requests, and using test driven development. I spent approximately 40 hours working on this project over the course of a week.
 
 ## Gif of application
 ![Application Features](https://github.com/crotteau/travelTracker/assets/149750476/6c10978f-62fe-4791-83da-d60d2c446b88)
