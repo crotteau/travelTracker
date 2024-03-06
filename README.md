@@ -12,11 +12,11 @@ This project was a final assessment for a Module 2 course at Turing. The goal of
 - run `npm install` to install library dependencies
 - `npm start` in your terminal
 - visit `http://localhost:8080/` to view webpage
-You will also need to download the backend server
+- You will also need to download the backend server
 -clone down this [api](https://github.com/turingschool-examples/travel-tracker-api)
 - run `npm install`
 - run `npm start`
-Then the webpage should be up and running!
+- Then the webpage should be up and running!
 
 
 ## Contributor
