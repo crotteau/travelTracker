@@ -1,5 +1,5 @@
 import { initiateUserFunctions, initiateTripFunctions, initiateDestinationFunctions, loadUserLogin } from "./scripts"
-import { displayPostError } from "./domUpdates"
+import { displayPostError, resetTripDisplay, removePending, removePast, removeUpcoming } from "./domUpdates"
 
 function getUserInfo(userID) {
     const loginUser = fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
@@ -42,7 +42,10 @@ function postData(newTrip) {
             'Content-Type': 'application/json'
         }
     })
-    .then(resp => resp.json())
+    .then(resp => {
+        resp.json()
+        getData()
+    })
     .catch(error => {
         console.log(error)
         displayPostError()

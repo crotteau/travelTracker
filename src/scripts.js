@@ -1,6 +1,6 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
-import { displayUserName, displayTripInfo, pastTripsGrid, upcomingTripsGrid, pendingTripsGrid, displayExpenses, displayDestinationOptions, destinationContainer, displayTripEstimate, username, password, displayLogin, loginError } from './domUpdates'
+import { displayUserName, displayTripInfo, pastTripsGrid, upcomingTripsGrid, pendingTripsGrid, displayExpenses, displayDestinationOptions, destinationContainer, displayTripEstimate, username, password, displayLogin, loginError, removeAllChildren } from './domUpdates'
 import { postData, getUserInfo } from './apiCalls'
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
@@ -91,19 +91,18 @@ function findTodaysDate() {
     let day = String(date.getDate())
     let month = String(date.getMonth() + 1)
     let year = String(date.getFullYear())
-    if (month < 10) {
-        currentDate = `${year}/0${month}/${day}`
-    } else {
-        currentDate = `${year}/${month}/${day}`
-    }
+    if(month.length == 1) month = '0' + month;
+    if(day.length == 1) day = '0' + day;
+    currentDate = `${year}/${month}/${day}`
     return currentDate
 }
 
 
 function findUpcomingTrips(userTrips) {
+    upcomingTrips = []
     let todaysDate = findTodaysDate()
     userTrips.forEach(trip => {
-        if (trip.date > todaysDate) {
+        if (trip.date > todaysDate && trip.status !== 'pending') {
             upcomingTrips.push(trip)
         }
     })
@@ -111,6 +110,7 @@ function findUpcomingTrips(userTrips) {
 }
 
 function findPendingTrips(userTrips) {
+    pendingTrips = []
     userTrips.forEach(trip => {
         if (trip.status === 'pending') {
             pendingTrips.push(trip)
@@ -120,8 +120,10 @@ function findPendingTrips(userTrips) {
 }
 
 function findPastTrips(userTrips) {
+    pastTrips = []
     let todaysDate = findTodaysDate()
     userTrips.forEach(trip => {
+        console.log(todaysDate, trip.date)
         if (trip.date < todaysDate) {
             pastTrips.push(trip)
         }
@@ -184,7 +186,9 @@ function submitTripRequest(tripDate, tripDuration, travelerNum, destination) {
 
 function storeCurrentDestinations(destinations) {
     destinations.forEach(destination => {
-        currentDestinations.push(destination)
+        if (!currentDestinations.includes(destination)) {
+            currentDestinations.push(destination)
+        }
     })
     return currentDestinations
 }
