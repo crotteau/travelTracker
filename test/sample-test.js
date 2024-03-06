@@ -1,9 +1,11 @@
 import allTravelers from './traveler-test-data';
 import allTrips from './trip-test-data';
 import allDestinations from './destination-test-data';
-import { upcomingTrips, pastTrips, pendingTrips } from './functions-test';
 
 import {
+  upcomingTrips,
+  pastTrips,
+  pendingTrips, 
   findUser,
   findTrips,
   findUpcomingTrips,
@@ -13,7 +15,8 @@ import {
   calculateExpenses,
   submitTripRequest,
   findDestinationCosts,
-  estimateTripCost
+  estimateTripCost,
+  checkUsername
 } from './functions-test'
 
 import chai from 'chai';
@@ -211,3 +214,14 @@ describe('Calculating trip costs', () => {
 
 });
 
+describe('User login', () => {
+  it('should find the userID using using username', () => {
+    let username1 = 'traveler34'
+    let username2 = 'traveler4'
+    const usernameLogin1 = checkUsername(username1)
+    const usernameLogin2 = checkUsername(username2)
+
+    expect(usernameLogin1).to.deep.equal(34)
+    expect(usernameLogin2).to.deep.equal(4)
+  })
+});

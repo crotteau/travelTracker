@@ -1,21 +1,16 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
+
 import { displayUserName, displayTripInfo, pastTripsGrid, upcomingTripsGrid, pendingTripsGrid, displayExpenses, displayDestinationOptions, destinationContainer, displayTripEstimate, username, password, displayLogin, loginError, removeAllChildren } from './domUpdates'
 import { postData, getUserInfo } from './apiCalls'
-// An example of how you tell webpack to use a CSS (SCSS) file
+
 import './css/styles.css';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
-
-// <<<>>> Find User Data
+// <<<>>> Global Variables
 let currentUserId;
 let pastTrips = [];
 let upcomingTrips = [];
 let pendingTrips = [];
 
 // <<>> User Login
-
 function verifyLogin() {
     if (password.value === 'travel' && username.value.includes('traveler') && username.value.length < 11) {
         checkUsername()
@@ -29,10 +24,10 @@ function checkUsername() {
     let userID;
 
     if (checkName.length === 9) {
-        userID = Number(checkName[8]) 
+        userID = Number(checkName[8])
         getUserInfo(userID)
     } else if (checkName.length === 10) {
-        userID = Number(checkName[8] + checkName[9]) 
+        userID = Number(checkName[8] + checkName[9])
         getUserInfo(userID)
     }
 }
@@ -81,8 +76,6 @@ function findTrips(trips) {
     findUpcomingTrips(userTrips)
     findPendingTrips(userTrips)
     findPastTrips(userTrips)
-    console.log('userTrips', userTrips)
-    return userTrips
 }
 
 function findTodaysDate() {
@@ -91,12 +84,11 @@ function findTodaysDate() {
     let day = String(date.getDate())
     let month = String(date.getMonth() + 1)
     let year = String(date.getFullYear())
-    if(month.length == 1) month = '0' + month;
-    if(day.length == 1) day = '0' + day;
+    if (month.length == 1) month = '0' + month;
+    if (day.length == 1) day = '0' + day;
     currentDate = `${year}/${month}/${day}`
     return currentDate
 }
-
 
 function findUpcomingTrips(userTrips) {
     upcomingTrips = []
@@ -123,7 +115,6 @@ function findPastTrips(userTrips) {
     pastTrips = []
     let todaysDate = findTodaysDate()
     userTrips.forEach(trip => {
-        console.log(todaysDate, trip.date)
         if (trip.date < todaysDate) {
             pastTrips.push(trip)
         }

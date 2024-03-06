@@ -1,5 +1,5 @@
 import { initiateUserFunctions, initiateTripFunctions, initiateDestinationFunctions, loadUserLogin } from "./scripts"
-import { displayPostError, resetTripDisplay, removePending, removePast, removeUpcoming } from "./domUpdates"
+import { displayPostError } from "./domUpdates"
 
 function getUserInfo(userID) {
     const loginUser = fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
@@ -27,9 +27,6 @@ function getData() {
         initiateUserFunctions(allTravelers.travelers)
         initiateTripFunctions(allTrips.trips)
         initiateDestinationFunctions(allDestinations.destinations)
-        // console.log('allTravelers', allTravelers.travelers)
-        // console.log('allTrips', allTrips.trips)
-        // console.log('allDestinations', allDestinations.destinations)
     })
     .catch(error => console.log(error))
 }

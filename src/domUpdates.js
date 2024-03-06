@@ -1,5 +1,5 @@
 import { getData } from './apiCalls'
-import { submitTripRequest, estimateTripCost, findDestinationCosts, verifyLogin, pendingTrips, findPendingTrips, userTrips} from './scripts'
+import { submitTripRequest, estimateTripCost, findDestinationCosts, verifyLogin } from './scripts'
 
 const greeting = document.querySelector('.username')
 const pastTripsGrid = document.querySelector('.past-trips-grid')
@@ -30,14 +30,13 @@ const removePending = document.getElementById('pendingTrips')
 const removeUpcoming = document.getElementById('upcomingTrips');
 const removePast = document.getElementById('pastTrips');
 
-// window.addEventListener('load', getData)
+
 loginButton.addEventListener('click', (event) => {
     event.preventDefault()
     verifyLogin()
 })
 
-destinationContainer.addEventListener('mouseout', (event) => {
-    event.preventDefault()
+destinationContainer.addEventListener('mouseout', () => {
     findDestinationCosts()
 })
 
@@ -58,19 +57,16 @@ function displayUserName(userInfo) {
 }
 
 function resetTripDisplay(element) {
-while (element.firstChild) {
-    console.log('elemement', element.firstChild)
-  element.removeChild(element.firstChild);
-}
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
 }
 
 function displayTripInfo(trips, grid) {
     resetTripDisplay(grid)
-    let tabIndex = 0
     for (var i = 0; i < trips.length; i++) {
-        tabIndex += 1
         grid.insertAdjacentHTML('beforeend',
-            `<div class="trip" id="${trips[i].id} tabindex="${tabIndex}" style="background-image: url(${trips[i].image}); background-size: cover">
+            `<div class="trip" tabindex="0" style="background-image: url(${trips[i].image}); background-size: cover">
                 <h4 class="destination-name">${trips[i].destinationID}</h4>
                 <ul class="trip-list"> 
                     <li>Date: ${trips[i].date}</li>
@@ -79,10 +75,9 @@ function displayTripInfo(trips, grid) {
                 </ul>
             </div>`)
     }
-        if (trips.length === 0) {
-        tabIndex = 1
+    if (trips.length === 0) {
         grid.insertAdjacentHTML('beforeend',
-            `<div class="trip" tabindex="${tabIndex}" style="background-color: rgba(230, 236, 206, 1)">
+            `<div class="trip" tabindex="0" style="background-color: rgba(230, 236, 206, 1)">
                 <h4 class="destination-name">No trips to display!</h4>
             </div>`)
     }
@@ -101,8 +96,8 @@ function displayDestinationOptions(destinations) {
         return b.destination.localeCompare(a.destination)
     })
     for (var i = 0; i < travelOptions.length; i++) {
-        destinationContainer.insertAdjacentHTML('afterbegin', 
-        `<option class="select-destination" value="${travelOptions[i].id}">${travelOptions[i].destination}</option>`)
+        destinationContainer.insertAdjacentHTML('afterbegin',
+            `<option class="select-destination" value="${travelOptions[i].id}">${travelOptions[i].destination}</option>`)
     }
 }
 
