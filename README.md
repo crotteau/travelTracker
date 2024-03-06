@@ -1,5 +1,5 @@
 # Travel Tracker
-A website where you can track your upcoming and past trips, see how much money you spend on travel in the past year, request new trips to a travel agent, and view potential lodging and flight costs!
+A website where you can track your upcoming and past trips, see how much money you spend on travel annually, request new trips to a travel agent, and view potential lodging and flight costs!
 
 ## Background
 This project was a final assessment for a Module 2 course at Turing. The goal of this project was to create an application to manage and track different trips for users. It called upon topics we learned in this module such as object and array prototype methods, implementing network requests, and using test driven development. 
