@@ -1,8 +1,15 @@
 
-import { displayUserName, displayTripInfo, pastTripsGrid, upcomingTripsGrid, pendingTripsGrid, displayExpenses, displayDestinationOptions, destinationContainer, displayTripEstimate, username, password, displayLogin, loginError, removeAllChildren } from './domUpdates'
+import {
+    displayUserName, displayTripInfo, pastTripsGrid,
+    upcomingTripsGrid, pendingTripsGrid, displayExpenses,
+    displayDestinationOptions, destinationContainer, displayTripEstimate,
+    username, password, displayLogin, loginError
+} from './domUpdates'
 import { postData, getUserInfo } from './apiCalls'
 
 import './css/styles.css';
+
+// import './images/airplane2.png'
 
 // <<<>>> Global Variables
 let currentUserId;
@@ -84,8 +91,8 @@ function findTodaysDate() {
     let day = String(date.getDate())
     let month = String(date.getMonth() + 1)
     let year = String(date.getFullYear())
-    if (month.length == 1) month = '0' + month;
-    if (day.length == 1) day = '0' + day;
+    if (month.length === 1) { month = '0' + month }
+    if (day.length === 1) { day = '0' + day }
     currentDate = `${year}/${month}/${day}`
     return currentDate
 }

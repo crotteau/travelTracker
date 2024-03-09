@@ -112,7 +112,6 @@ function checkForCompletion(tripDate, tripDuration, travelerNum, destination) {
         requestError.innerText = 'Please choose a destination'
     } else {
         estimateTripCost(tripDuration, travelerNum)
-        debugger
         resetTripDisplay(removePast)
         resetTripDisplay(removePending)
         resetTripDisplay(removeUpcoming)

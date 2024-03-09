@@ -1,12 +1,19 @@
-import { initiateUserFunctions, initiateTripFunctions, initiateDestinationFunctions, loadUserLogin } from "./scripts"
+import {
+    initiateUserFunctions,
+    initiateTripFunctions,
+    initiateDestinationFunctions,
+    loadUserLogin
+} from "./scripts"
 import { displayPostError } from "./domUpdates"
 
 function getUserInfo(userID) {
     const loginUser = fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
         .then(resp => resp.json())
-    
-        Promise.all([loginUser])
-        .then(data => {loadUserLogin(data)})
+
+    Promise.all([loginUser])
+        .then(data => {
+            loadUserLogin(data)
+        })
         .catch(error => console.log(error))
 }
 
@@ -14,7 +21,7 @@ function getUserInfo(userID) {
 function getData() {
     const allTravelers = fetch('http://localhost:3001/api/v1/travelers')
         .then(resp => resp.json())
-    
+
     const allTrips = fetch('http://localhost:3001/api/v1/trips')
         .then(resp => resp.json())
 
@@ -22,13 +29,13 @@ function getData() {
         .then(resp => resp.json())
 
     Promise.all([allTravelers, allTrips, allDestinations])
-    .then(data => {
-        let [allTravelers, allTrips, allDestinations] = data
-        initiateUserFunctions(allTravelers.travelers)
-        initiateTripFunctions(allTrips.trips)
-        initiateDestinationFunctions(allDestinations.destinations)
-    })
-    .catch(error => console.log(error))
+        .then(data => {
+            let [allTravelers, allTrips, allDestinations] = data
+            initiateUserFunctions(allTravelers.travelers)
+            initiateTripFunctions(allTrips.trips)
+            initiateDestinationFunctions(allDestinations.destinations)
+        })
+        .catch(error => console.log(error))
 }
 
 function postData(newTrip) {
@@ -39,14 +46,14 @@ function postData(newTrip) {
             'Content-Type': 'application/json'
         }
     })
-    .then(resp => {
-        resp.json()
-        getData()
-    })
-    .catch(error => {
-        console.log(error)
-        displayPostError()
-    })
+        .then(resp => {
+            resp.json()
+            getData()
+        })
+        .catch(error => {
+            console.log(error)
+            displayPostError()
+        })
 }
 
 
