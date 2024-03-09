@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track your vacations, make trip requests, and assess travel expenses.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kosugi&family=Phudu:wght@300..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Faster+One&family=Kosugi&family=Phudu&display=swap"
+    rel="stylesheet">
+  <title>Travel Tracker!</title>
+</head>
+
+<body>
+  <header>
+    <h1>Travel Tracker</h1>
+  </header>
+  <section class="user-login-page">
+    <form class="user-login">
+      <label for="username">Username:</label>
+      <input type="text" class="login-input" name="user-name" id="username">
+      <label for="userPassword">Password:</label>
+      <input type="text" class="login-input" name="user-password" id="userPassword">
+      <div class="login-error"></div>
+      <button class="login-button">Login</button>
+    </form>
+  </section>
+  <main class="hidden">
+    <section class="leftside-trips">
+      <h2 class="username"></h2>
+      <h2 class="user-trips">Your Trips:</h2>
+      <article class="trips-summary">
+        <div class="pending-trips">
+          <h3 class="sub-header">Pending:</h3>
+          <article class="pending-trips-grid" id="pendingTrips"></article>
+        </div>
+        <div class="upcoming-trips">
+          <h3 class="sub-header">Upcoming:</h3>
+          <article class="upcoming-trips-grid" id="upcomingTrips"></article>
+        </div>
+        <div class="past-trips">
+          <h3 class="sub-header">Past:</h3>
+          <article class="past-trips-grid" id="pastTrips"></article>
+        </div>
+      </article>
+    </section>
+    <section class="rightside-trips">
+      <article class="trip-expenses">
+        <h2 tabindex="0" class="expenses-header" aria-label="Expenses Table">Annual Trip Expenses</h2>
+        <table tabindex="0" class="expenses-table">
+          <caption aria-label="Annual money spend on trips">*includes 10% agent's fee</caption>
+          <thead>
+            <tr tabindex="0">
+              <th scope="col" class="column-header">Expense</th>
+              <th scope="col" class="column-header">Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr tabindex="0">
+              <th scope="row">Lodging</th>
+              <td class="lodging-cost"></td>
+            </tr>
+            <tr tabindex="0">
+              <th scope="row">Flights</th>
+              <td class="flight-cost"></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr tabindex="0">
+              <th scope="row">Total Expenses</th>
+              <td colspan="2" class="total-expenses"></td>
+            </tr>
+            <tr tabindex="0">
+              <th scope="row">Grand Total*</th>
+              <td colspan="2" class="agents-fee"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </article>
+      <article class="request-trips">
+        <h2 class="request">Request a Trip</h2>
+        <form tabindex="0" class="request-input" aria-label="Request a trip form">
+          <label for="tripDate">Date:</label>
+          <input type="date" name="trip-date" id="tripDate">
+          <label for="tripDuration">Duration (days):</label>
+          <input type="number" name="trip-duration" id="tripDuration">
+          <label for="travelerNum">Number of Travelers:</label>
+          <input type="number" name="traveler-number" id="travelerNum">
+          <label for="destinations">Destination:</label>
+          <select name="destinations" id="destinations">
+            <option class="select-destination" id="selectDestination">Click to Select Destination</option>
+          </select>
+          <div class="request-error"></div>
+          <button class="request-trip-button">Submit</button>
+        </form>
+        <article class="projected-expenses">
+          <h4 tabindex="0">Estimated Trip Cost</h4>
+          <table tabindex="0" class="trip-request-table">
+            <thead>
+              <tr tabindex="0">
+                <th scope="col">Expense</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Multiplier</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr tabindex="0">
+                <th scope="row">Lodging:</th>
+                <td class="lodging-est"></td>
+                <td class="lodging-days-est"></td>
+              </tr>
+              <tr tabindex="0">
+                <th scope="row">Flights:</th>
+                <td class="flight-est"></td>
+                <td class="flight-quantity-est"></td>
+              </tr>
+              <tr tabindex="0">
+                <th scope="row">Estimated Total:</th>
+                <td class="total-est"></td>
+              </tr>
+              <caption aria-label="Estimated cost of trip">*includes 10% agent's fee</caption>
+            </tbody>
+        </article>
+      </article>
+    </section>
+  </main>
+
+
+  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+  <script src="bundle.js"></script>
+
+</body>
+
+</html>
