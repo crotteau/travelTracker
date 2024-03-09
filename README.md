@@ -8,15 +8,16 @@ This project was a final assessment for a Module 2 course at Turing. The goal of
 ![Application Features](https://github.com/crotteau/travelTracker/assets/149750476/6c10978f-62fe-4791-83da-d60d2c446b88)
 
 ## Installation Instructions
-- clone down this [repo](https://github.com/crotteau/travelTracker)
-- run `npm install` to install library dependencies
-- `npm start` in your terminal
-- visit `http://localhost:8080/` to view webpage
-- You will also need to download the backend server
+- Visit the deployed [link](https://crotteau.github.io/travelTracker/) to view the webpage
+- For functionality, you will also need to download the backend server
 - clone down this [api](https://github.com/turingschool-examples/travel-tracker-api)
 - run `npm install`
 - run `npm start`
 - Then the webpage should be up and running!
+
+- To login in to the webpage: <br>
+  **Username**: traveler7 (for other usernames, you can use this template: traveler + any number between 1-50. eg: traveler1, traveler37) <br>
+  **Password**: travel (password is always travel)
 
 
 ## Contributor
