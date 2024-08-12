@@ -24,7 +24,7 @@ This project was a final assessment for a Module 2 course at Turing. The goal of
 [Megan Crotteau](https://github.com/crotteau)
 
 ## Technologies Used
-Fitlit is made with JavaScript, HTML, CSS, and Webpack. It's built using test-driven development with the Mocha Testing Framework & Chai Assertion Library.
+Travel Tracker is made with JavaScript, HTML, CSS, and Webpack. It's built using test-driven development with the Mocha Testing Framework & Chai Assertion Library.
 - To run tests: `npm test` from the associated root directory
 
 ## Original Project Spec Page
